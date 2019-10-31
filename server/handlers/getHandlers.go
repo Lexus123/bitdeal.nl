@@ -85,7 +85,7 @@ package handlers
 // */
 // func GetHomePage(w http.ResponseWriter, r *http.Request) {
 // 	if checkCookie(r) {
-// 		templates :=  addTemplate("templates/pages/homepage.gohtml", true)
+// 		templates := addTemplate("templates/pages/homepage.gohtml", true)
 // 		tmpl := template.Must(template.ParseFiles(templates...))
 
 // 		data := models.IndexData{
