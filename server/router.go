@@ -5,7 +5,7 @@ import (
 
 	"github.com/gorilla/mux"
 
-	"node.lexvanderwerff.com/server/routes"
+	"bitdeal.nl/server/routes"
 )
 
 /*

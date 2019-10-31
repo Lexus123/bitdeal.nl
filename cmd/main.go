@@ -1,7 +1,7 @@
 package main
 
 import (
-	"node.lexvanderwerff.com/server"
+	"bitdeal.nl/server"
 )
 
 func main() {

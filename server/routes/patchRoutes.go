@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"node.lexvanderwerff.com/models"
-	"node.lexvanderwerff.com/server/handlers"
+	"bitdeal.nl/models"
+	"bitdeal.nl/server/handlers"
 )
 
 /*
