@@ -1,15 +1,16 @@
 package handlers
 
-// import (
-// 	"fmt"
-// 	"html/template"
-// 	"net/http"
-// 	"strings"
-// 	"time"
+import (
+	"fmt"
+	"net/http"
+)
 
-// 	"node.lexvanderwerff.com/models"
-// 	"node.lexvanderwerff.com/server/security"
-// )
+/*
+GetHomePage ...
+*/
+func GetHomePage(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hoi hoi!")
+}
 
 // /*
 // GetSignInPage ...
