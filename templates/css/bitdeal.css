@@ -1,0 +1,224 @@
+{{ define "bitdeal.css" }}
+<style>
+	* { margin:0; padding:0; box-sizing:border-box; }
+
+	body {
+		background: #F8F8F8;
+	}
+
+	section {
+		padding: 3rem;
+	}
+
+	input {
+		border: 0;
+		color: #918051;
+		height: 100%;
+		font-size: 28px;
+	}
+
+	input:focus {
+		outline: none;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-family: 'Playfair Display', serif;
+		font-weight: 700;
+		color: #5C5849;
+	}
+
+	h1 {
+		font-size: 4rem;
+	}
+
+	h1 span {
+		border-bottom: 1rem solid #90D9FF;
+		display: inline-block;
+		line-height: 0.55;
+	}
+
+	p, a, div {
+		font-family: Arial, Helvetica, sans-serif;
+		color: #918051;
+	}
+
+	nav {
+		display: flex;
+	}
+
+	.nav-item {
+		padding-right: 1rem;
+	}
+
+	.bitdeal-header {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		align-items: center;
+	}
+
+	.header-left {
+		display: grid;
+		height: 100%;
+		grid-template-rows: 1fr 9fr;
+	}
+
+	.quote-wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.header-right {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100%;
+		background: #FFC72E;
+	}
+
+	.filter {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.filter__section {
+		display: flex;
+		background: white;
+		border-radius: 12px;
+		border: 1px solid #DDDAD0;
+		-webkit-box-shadow: 0px 4px 0px 0px rgba(0,0,0,0.08);
+		-moz-box-shadow: 0px 4px 0px 0px rgba(0,0,0,0.08);
+		box-shadow: 0px 4px 0px 0px rgba(0,0,0,0.08);
+	}
+
+	.filter__section--buttons {
+		flex-direction: row;
+		margin-bottom: 1rem;
+		padding: 1.5rem 2rem;
+	}
+
+	.btn {
+		font-size: 1.5rem;
+		padding: 1.4rem 1rem;
+		border-radius: 8px;
+		width: 100%;
+		font-weight: bold;
+		color: #5C5849;
+		outline: none;
+	}
+
+	.btn--buy {
+		background: #FFC72E;
+		border: 1px solid #D89C16;
+
+		margin-right: 10px;
+	}
+
+	.btn--sell {
+		background: white;
+		border: 1px solid #DBDBDB;
+
+		margin-left: 10px;
+	}
+
+	.filter__section--calc {
+		flex-direction: column;
+	}
+
+	.calc-field {
+		display: flex;
+		padding: 1.5rem 2rem;
+		flex-direction: column;
+	}
+
+	.calc-field__upper {
+		border-bottom: 1px solid #DDDAD0;
+	}
+
+	.amount__section {
+		display: flex;
+		justify-content: space-between;
+		font-size: 28px;
+	}
+
+	.label {
+		text-transform: uppercase;
+		font-size: 11px;
+		font-weight: bold;
+		margin-bottom: 11px;
+	}
+
+	.asset {
+		text-transform: uppercase;
+	}
+
+	.bitdeals {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 3rem;
+	}
+
+	.bitdeal {
+		width: 100%;
+		padding: 1rem 0;
+		margin-bottom: 15px;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		background: white;
+		border-radius: 12px;
+		border: 1px solid #DDDAD0;
+		-webkit-box-shadow: 0px 4px 0px 0px rgba(0,0,0,0.08);
+		-moz-box-shadow: 0px 4px 0px 0px rgba(0,0,0,0.08);
+		box-shadow: 0px 4px 0px 0px rgba(0,0,0,0.08);
+	}
+
+	.deal__desc {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	.deal__desc--company {
+		font-size: 32px;
+		font-weight: bold;
+	}
+
+	.deal__desc--pill {
+		background: #B0F5C3;
+		border: 1px solid rgba(6, 77, 0, 0.2);
+		border-radius: 6px;
+		color: #114800;
+		font-weight: bold;
+		padding: 4px 6px;
+	}
+
+	.review-stars {
+		font-size: 18px;
+	}
+
+	.rate-amount {
+		margin-bottom: 11px;
+		font-size: 18px;
+	}
+
+	.rate {
+		font-size: 14px;
+	}
+
+	.btn--company {
+		padding: 8px;
+		border-radius: 8px;
+		font-weight: bold;
+		color: #5C5849;
+		outline: none;
+		background: #FFC72E;
+		border: 1px solid #D89C16;
+		font-size: 1rem;
+	}
+	
+</style>
+{{ end }}

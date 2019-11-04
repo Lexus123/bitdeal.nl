@@ -1,0 +1,10 @@
+server:
+  port: 8003
+
+database:
+  dbname: 
+  dbuser: "dbuser"
+  dbpassword: "dbpassword"
+
+ExampleVar: "variable from config.yml"
+ExamplePath: "path from config.yml"

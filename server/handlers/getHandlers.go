@@ -1,20 +1,29 @@
 package handlers
 
 import (
-	"fmt"
+	"html/template"
 	"net/http"
+
+	"bitdeal.nl/models"
 )
 
 /*
 GetHomePage ...
 */
 func GetHomePage(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hoi hoi!")
+	templates := addTemplate("templates/pages/homepage.html")
+	tmpl := template.Must(template.ParseFiles(templates...))
+
+	data := models.IndexData{
+		Title: "Homepage",
+	}
+
+	tmpl.ExecuteTemplate(w, "layout", data)
 }
 
-// /*
-// GetSignInPage ...
-// */
+/*
+GetSignInPage ...
+*/
 // func GetSignInPage(w http.ResponseWriter, r *http.Request) {
 // 	// Check whether the client already has a cookie
 // 	if checkCookie(r) {
