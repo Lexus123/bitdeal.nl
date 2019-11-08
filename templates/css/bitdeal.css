@@ -17,6 +17,12 @@
 		font-size: 28px;
 	}
 
+	input[type=number]::-webkit-inner-spin-button, 
+	input[type=number]::-webkit-outer-spin-button { 
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
 	input:focus {
 		outline: none;
 	}
@@ -42,17 +48,37 @@
 		color: #918051;
 	}
 
+	a {
+		cursor: pointer;
+	}
+
 	nav {
 		display: flex;
 	}
 
 	.nav-item {
 		padding-right: 1rem;
+		font-family: 'Playfair Display', serif;
+		font-weight: 700;
+		color: #5C5849;
+	}
+
+	.nav-item::after {
+		content: '';
+		width: 0;
+		height: 5px;
+		display: block;
+		background: #90D9FF;;
+		transition: width .3s;
+	}
+
+	.nav-item:hover::after {
+		width: 100%;
 	}
 
 	.bitdeal-header {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(384px, 1fr));
 		align-items: center;
 	}
 
@@ -106,20 +132,32 @@
 		font-weight: bold;
 		color: #5C5849;
 		outline: none;
+		background: white;
+		border: 1px solid #DBDBDB;
+		transition: all 200ms ease;
 	}
 
-	.btn--buy {
-		background: #FFC72E;
+	.btn:hover {
+		background: #FFF0C7;
 		border: 1px solid #D89C16;
+	}
 
+	.btn:active {
+		background: white;
+		border: 1px solid #E8BC56;
+	}
+
+	.btn__buy {
 		margin-right: 10px;
 	}
 
-	.btn--sell {
-		background: white;
-		border: 1px solid #DBDBDB;
-
+	.btn__sell {
 		margin-left: 10px;
+	}
+
+	.btn--active {
+		background: #FFC72E;
+		border: 1px solid #D89C16;
 	}
 
 	.filter__section--calc {
@@ -163,10 +201,11 @@
 
 	.bitdeal {
 		width: 100%;
-		padding: 1rem 0;
+		padding: 1rem 2rem;
 		margin-bottom: 15px;
-		display: flex;
-		justify-content: space-around;
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		grid-gap: 1rem;
 		align-items: center;
 		background: white;
 		border-radius: 12px;
@@ -182,22 +221,41 @@
 		justify-content: space-between;
 	}
 
-	.deal__desc--company {
+	.desc__company {
 		font-size: 32px;
 		font-weight: bold;
 	}
 
-	.deal__desc--pill {
-		background: #B0F5C3;
-		border: 1px solid rgba(6, 77, 0, 0.2);
-		border-radius: 6px;
-		color: #114800;
-		font-weight: bold;
-		padding: 4px 6px;
+	.desc__rate {
+		padding-left: 1rem;
 	}
 
-	.review-stars {
+	.desc__pill {
+		border-radius: 6px;
+		font-weight: bold;
+		padding: 4px 6px;
+		width: fit-content;
+	}
+
+	.desc__pill--deal {
+		background: #B0F5C3;
+		border: 1px solid rgba(6, 77, 0, 0.2);
+		color: #114800;
+	}
+
+	.desc__pill--review {
+		background: #B0E2F5;
+		border: 1px solid rgba(0, 18, 77, 0.2);
+		color: #002448;
+	}
+
+	.review--stars {
 		font-size: 18px;
+		margin-bottom: 11px;
+	}
+
+	.review--text {
+		font-size: 14px;
 	}
 
 	.rate-amount {
@@ -218,7 +276,18 @@
 		background: #FFC72E;
 		border: 1px solid #D89C16;
 		font-size: 1rem;
+		text-align: center;
+		transition: all 200ms ease;
 	}
-	
+
+	.btn--company:hover {
+		background: #FFF0C7;
+		border: 1px solid #D89C16;
+	}
+
+	footer {
+		padding: 3rem;
+		background: #222;
+	}
 </style>
 {{ end }}

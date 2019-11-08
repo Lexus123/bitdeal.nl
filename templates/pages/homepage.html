@@ -1,116 +1,43 @@
 {{define "content"}}
-<header class="bitdeal-header">
-	<section class="header-left">
-		<nav>
-			<h4 class="nav-item">
-				Bitdeal
-			</h4>
-			<h4 class="nav-item">
-				Blog
-			</h4>
-		</nav>
-		<div class="quote-wrapper">
-			<h1 class="quote">Meeste <span>bitcoins</span> voor jouw euro's</h1>
-		</div>
-	</section>
-
-	<section class="header-right">
-		<div class="filter">
-			<div class="filter__section filter__section--buttons">
-				<button class="btn btn--buy">Kopen</button>
-				<button class="btn btn--sell">Verkopen</button>
-			</div>
-			<div class="filter__section filter__section--calc">
-				<div class="calc-field calc-field__upper">
-					<label class="label">
-						Betaal
-					</label>
-					<div class="amount__section">
-						<div class="amount__input amount__input--euro">
-							<label>€</label>
-							<input value="420,00" autofocus />
-						</div>
-						<div class="asset">
-							Euro
-						</div>
-					</div>
-				</div>
-				<div class="calc-field calc-field__lower">
-					<label class="label">
-						Ontvang
-					</label>
-					<div class="amount__section">
-						<div class="amount__input amount__input--btc">
-							<label>₿</label>
-							<input value="0,0420" />
-						</div>
-						<div class="asset">
-							Btc
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-</header>
+{{template "homepageheader"}}
 <main class="bitdeals">
 	<div class="bitdeal">
-		<p class="deal__desc deal__desc--company">Satos</p>
-		<div class="deal__desc deal__desc--review">
+		<p class="deal__desc desc__company">Satos</p>
+		<div class="deal__desc desc__review">
 			<label class="label">
 				Waardering
 			</label>
-			<p class="review-stars">★★★★ 1200 reviews</p>
+			<p class="review--stars">★★★★★</p>
+			<p class="review--text">1200 reviews</p>
 		</div>
-		<div class="deal__desc deal__desc--rate">
+		<div class="deal__desc desc__rate">
 			<label class="label">
 				Ontvang
 			</label>
 			<p class="rate-amount">₿ 0,780058</p>
 			<p class="rate">(€ 10.000,00 / BTC)</p>
 		</div>
-		<div class="deal__desc deal__desc--pill">Beste deal!</div>
-		<button class="deal__desc deal__desc--buy btn--company">Ga naar Satos</button>
+		<div class="deal__desc desc__pill"></div>
+		<a class="deal__desc deal__desc--buy btn--company">Ga naar Satos</a>
 	</div>
 	<div class="bitdeal">
-		<p class="deal__desc deal__desc--company">Satos</p>
-		<div class="deal__desc deal__desc--review">
+		<p class="deal__desc desc__company">Satos</p>
+		<div class="deal__desc desc__review">
 			<label class="label">
 				Waardering
 			</label>
-			<p class="review-stars">★★★★ 1200 reviews</p>
+			<p class="review--stars">★★★★★</p>
+			<p class="review--text">1200 reviews</p>
 		</div>
-		<div class="deal__desc deal__desc--rate">
+		<div class="deal__desc desc__rate">
 			<label class="label">
 				Ontvang
 			</label>
 			<p class="rate-amount">₿ 0,780058</p>
 			<p class="rate">(€ 10.000,00 / BTC)</p>
 		</div>
-		<div class="deal__desc deal__desc--pill">Meeste reviews!</div>
-		<button class="deal__desc deal__desc--buy btn--company">Ga naar Bitonic</button>
-	</div>
-	<div class="bitdeal">
-		<p class="deal__desc deal__desc--company">Satos</p>
-		<div class="deal__desc deal__desc--review">
-			<label class="label">
-				Waardering
-			</label>
-			<p class="review-stars">★★★★ 1200 reviews</p>
-		</div>
-		<div class="deal__desc deal__desc--rate">
-			<label class="label">
-				Ontvang
-			</label>
-			<p class="rate-amount">₿ 0,780058</p>
-			<p class="rate">(€ 10.000,00 / BTC)</p>
-		</div>
-		<div class="deal__desc deal__desc--pill">Beste deal!</div>
-		<button class="deal__desc deal__desc--buy btn--company">Ga naar Satos</button>
+		<div class="deal__desc desc__pill desc__pill--review">Meeste reviews!</div>
+		<a class="deal__desc deal__desc--buy btn--company">Ga naar Satos</a>
 	</div>
 </main>
-<footer>
-	<p>&copy; 2019. Made with ❤ and CSS Grid.</p>
-</footer>
-
 {{end}}

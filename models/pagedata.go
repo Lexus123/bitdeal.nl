@@ -1,9 +1,9 @@
 package models
 
 /*
-IndexData ...
+HomepageData ...
 */
-type IndexData struct {
+type HomepageData struct {
 	Title   string
 	Captcha string
 	Params  []string

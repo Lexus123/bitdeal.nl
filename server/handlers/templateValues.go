@@ -15,10 +15,12 @@ var (
 	*/
 	baseTemplates = []string{
 		"templates/css/bitdeal.css",
+		"templates/css/responsiveness.css",
 		"templates/components/head.html",
-		"templates/components/header.html",
-		"templates/components/nav.html",
-		"templates/components/bigAd.html",
+		"templates/components/homepageheaderright.html",
+		"templates/components/homepageheaderleft.html",
+		"templates/components/homepageheader.html",
+		"templates/components/homepagenav.html",
 		"templates/components/footer.html",
 		"templates/layouts/base.html",
 	}

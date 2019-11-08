@@ -9,11 +9,16 @@ import (
 GetRoutes ...
 */
 var GetRoutes = models.Routes{
-	// All GET requests
 	models.Route{
 		Name:        "GetHomePage",
 		Method:      "GET",
 		Pattern:     "/",
 		HandlerFunc: handlers.GetHomePage,
+	},
+	models.Route{
+		Name:        "GetPrices",
+		Method:      "GET",
+		Pattern:     "/api/getprices",
+		HandlerFunc: handlers.GetPrices,
 	},
 }

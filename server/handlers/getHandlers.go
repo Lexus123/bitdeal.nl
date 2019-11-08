@@ -1,9 +1,13 @@
 package handlers
 
 import (
+	"encoding/json"
+	"fmt"
 	"html/template"
+	"io/ioutil"
 	"net/http"
 
+	"bitdeal.nl/etl"
 	"bitdeal.nl/models"
 )
 
@@ -14,11 +18,55 @@ func GetHomePage(w http.ResponseWriter, r *http.Request) {
 	templates := addTemplate("templates/pages/homepage.html")
 	tmpl := template.Must(template.ParseFiles(templates...))
 
-	data := models.IndexData{
+	data := models.HomepageData{
 		Title: "Homepage",
 	}
 
 	tmpl.ExecuteTemplate(w, "layout", data)
+}
+
+/*
+GetPrices ...
+*/
+func GetPrices(w http.ResponseWriter, r *http.Request) {
+	// Read JSON body of request and check for errors. For example: buy, euro, 100
+	bodyAsByte, err := ioutil.ReadAll(r.Body)
+	defer r.Body.Close()
+	if err != nil {
+		http.Error(w, err.Error(), 500)
+		return
+	}
+
+	// Unmarshal the body and check for errors
+	var message models.GetPricesData
+	err = json.Unmarshal(bodyAsByte, &message)
+	if err != nil {
+		http.Error(w, err.Error(), 500)
+		return
+	}
+
+	// Send message to the extractor to get data from brokers
+	dataChannel := make(chan interface{}, 2)
+	defer close(dataChannel)
+	go etl.DoRequests(message, dataChannel)
+
+	getPricesResponse := models.GetPricesResponse{}
+	for i := 0; i < 2; i++ {
+		getPricesResponse.ExchangeRates = append(getPricesResponse.ExchangeRates, etl.Transform(message, <-dataChannel))
+	}
+
+	fmt.Println(getPricesResponse)
+
+	output, err := json.Marshal(message)
+	if err != nil {
+		http.Error(w, err.Error(), 500)
+		return
+	}
+
+	fmt.Println("ya don now")
+
+	w.Header().Set("content-type", "application/json")
+	w.Write(output)
 }
 
 /*

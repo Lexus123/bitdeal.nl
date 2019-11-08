@@ -1,0 +1,40 @@
+{{ define "homepageheaderright" }}
+<section class="header-right">
+	<div class="filter">
+		<div class="filter__section filter__section--buttons">
+			<button class="btn btn__buy btn--active">Kopen</button>
+			<button class="btn btn__sell">Verkopen</button>
+		</div>
+		<div class="filter__section filter__section--calc">
+			<div class="calc-field calc-field__upper">
+				<label class="label">
+					Betaal
+				</label>
+				<div class="amount__section">
+					<div class="amount__input amount__input--euro">
+						<label for="euro">€</label>
+						<input name="euro" value="420.00" type="number" />
+					</div>
+					<div class="asset">
+						Euro
+					</div>
+				</div>
+			</div>
+			<div class="calc-field calc-field__lower">
+				<label class="label">
+					Ontvang
+				</label>
+				<div class="amount__section">
+					<div class="amount__input amount__input--btc">
+						<label for="btc">₿</label>
+						<input name="btc" value="0.0420" type="number" />
+					</div>
+					<div class="asset">
+						Btc
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{{ end }}

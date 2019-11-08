@@ -4,12 +4,12 @@
         <name><![CDATA[affiliates]]></name>
         <schema><![CDATA[]]></schema>
         <location>
-            <x>62.00</x>
-            <y>108.00</y>
+            <x>77.00</x>
+            <y>61.00</y>
         </location>
         <size>
             <width>176.00</width>
-            <height>160.00</height>
+            <height>180.00</height>
         </size>
         <zorder>0</zorder>
         <SQLField>
@@ -40,15 +40,21 @@
             <uid><![CDATA[9DDEB9CC-4D4D-4D71-8D76-B8D2B755DE07]]></uid>
         </SQLField>
         <SQLField>
-            <name><![CDATA[exchangerate]]></name>
-            <type><![CDATA[INTEGER]]></type>
-            <uid><![CDATA[7F58B27D-0546-47A5-8093-CCFAB82A52BE]]></uid>
-        </SQLField>
-        <SQLField>
             <name><![CDATA[trustpilotlink]]></name>
-            <type><![CDATA[INTEGER]]></type>
+            <type><![CDATA[TEXT]]></type>
             <uid><![CDATA[C2A4201C-608A-4952-A13A-9747E9206246]]></uid>
         </SQLField>
+        <SQLField>
+            <name><![CDATA[sellrate]]></name>
+            <type><![CDATA[FLOAT]]></type>
+            <uid><![CDATA[BE25BA79-D65A-49C9-9CC5-A70F8299876C]]></uid>
+        </SQLField>
+        <SQLField>
+            <name><![CDATA[buyrrate]]></name>
+            <type><![CDATA[FLOAT]]></type>
+            <uid><![CDATA[7F58B27D-0546-47A5-8093-CCFAB82A52BE]]></uid>
+        </SQLField>
+        <ui.treeExpanded><![CDATA[1]]></ui.treeExpanded>
         <uid><![CDATA[FED8DCBC-D70D-4EF7-BB65-6BC09AFDADBE]]></uid>
     </SQLTable>
     <SQLDocumentInfo>
@@ -73,7 +79,7 @@
         <windowHeight><![CDATA[797.000000]]></windowHeight>
         <windowLocationX><![CDATA[27.000000]]></windowLocationX>
         <windowLocationY><![CDATA[80.000000]]></windowLocationY>
-        <windowScrollOrigin><![CDATA[{0, 42}]]></windowScrollOrigin>
+        <windowScrollOrigin><![CDATA[{0, 43}]]></windowScrollOrigin>
         <windowWidth><![CDATA[931.000000]]></windowWidth>
     </SQLDocumentInfo>
     <AllowsIndexRenamingOnInsert><![CDATA[1]]></AllowsIndexRenamingOnInsert>

@@ -1,0 +1,60 @@
+{{ define "responsiveness.css" }}
+<style>
+	@media all and (max-width: 1199px) {
+		input {
+			width: 80%;
+		}
+
+		.btn {
+			font-size: 1.2rem;
+		}
+	} 
+	
+	@media all and (max-width: 991px) {
+		/* Hier mobiel design toepassen  */
+	} 
+	
+	@media all and (max-width: 767px) {
+		.btn {
+			font-size: 1.5rem;
+		}
+
+		.header-right {
+			margin: 0 1rem;
+			border-radius: 12px;
+		}
+
+		.bitdeals, footer {
+			padding: 1rem;
+		}
+	}
+
+	@media all and (max-width: 575px) {
+		.btn {
+			font-size: 1.2rem;
+		}
+
+		.quote-wrapper {
+			display: none;
+		}
+
+		.header-left {
+			grid-template-rows: 0;
+			padding-bottom: 120px;
+		}
+
+		.nav-item {
+			font-size: 4rem;
+		}
+
+		.nav-item__not-title {
+			display: none;
+		}
+
+		section {
+			padding: 1.5rem;
+		}
+	}
+	
+</style>
+{{ end }}
