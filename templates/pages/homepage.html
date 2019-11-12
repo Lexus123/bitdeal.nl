@@ -1,44 +1,10 @@
 {{define "content"}}
-{{template "homepageheader"}}
+{{template "homepageheader" .}}
 <main class="bitdeals">
-	{{ .Prices }}
-	<div class="bitdeal">
-		<p class="deal__desc desc__company">Satos</p>
-		<div class="deal__desc desc__review">
-			<label class="label">
-				Waardering
-			</label>
-			<p class="review--stars">★★★★★</p>
-			<p class="review--text">1200 reviews</p>
-		</div>
-		<div class="deal__desc desc__rate">
-			<label class="label">
-				Ontvang
-			</label>
-			<p class="rate-amount">₿ 0,780058</p>
-			<p class="rate">(€ 10.000,00 / BTC)</p>
-		</div>
-		<div class="deal__desc desc__pill"></div>
-		<a class="deal__desc deal__desc--buy btn--company">Ga naar Satos</a>
-	</div>
-	<div class="bitdeal">
-		<p class="deal__desc desc__company">Satos</p>
-		<div class="deal__desc desc__review">
-			<label class="label">
-				Waardering
-			</label>
-			<p class="review--stars">★★★★★</p>
-			<p class="review--text">1200 reviews</p>
-		</div>
-		<div class="deal__desc desc__rate">
-			<label class="label">
-				Ontvang
-			</label>
-			<p class="rate-amount">₿ 0,780058</p>
-			<p class="rate">(€ 10.000,00 / BTC)</p>
-		</div>
-		<div class="deal__desc desc__pill desc__pill--review">Meeste reviews!</div>
-		<a class="deal__desc deal__desc--buy btn--company">Ga naar Satos</a>
-	</div>
+	{{$bestrate := .ExchangePrices.BestRate}}
+	{{$mostreviews := .ExchangePrices.MostReviews}}
+	{{range .ExchangePrices.ExchangeRates}}
+	{{template "bitdeal" (wrap . $bestrate $mostreviews)}}
+	{{end}}
 </main>
 {{end}}

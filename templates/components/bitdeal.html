@@ -1,0 +1,29 @@
+{{ define "bitdeal" }}
+<div class="bitdeal">
+	<p class="deal__desc desc__company">{{ .Exchange.Exchange }}</p>
+	<div class="deal__desc desc__review">
+		<label class="label">
+			Waardering
+		</label>
+		<p class="review--stars">★★★★★</p>
+		<p class="review--text">{{ .Exchange.Reviews }} reviews</p>
+	</div>
+	<div class="deal__desc desc__rate">
+		<label class="label">
+			Ontvang
+		</label>
+		<p class="rate-amount">₿ {{ .Exchange.Amount }}</p>
+		<p class="rate">(€ {{ .Exchange.Rate }} / BTC)</p>
+	</div>
+
+	{{ if (eq .Exchange.Rate .BestRate)}}
+	<div class="deal__desc desc__pill desc__pill--deal">Beste deal!</div>
+	{{ else if (eq .Exchange.Reviews .MostReviews)}}
+	<div class="deal__desc desc__pill desc__pill--review">Meeste reviews!</div>
+	{{ else }}
+	<div class="deal__desc desc__pill desc__pill"></div>
+	{{end}}
+
+	<a class="deal__desc deal__desc--buy btn--company" href={{.Exchange.Link}}>Ga naar {{  .Exchange.Exchange }}</a>
+</div>
+{{ end }}

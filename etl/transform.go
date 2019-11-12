@@ -32,6 +32,8 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Exchange: "Bitvavo",
 			Rate:     math.Round(rate*100) / 100,
 			Amount:   amount,
+			Link:     "https://bitvavo.com/?a=C23D4F6D97",
+			Reviews:  1895,
 		}
 	case *models.Litebit:
 		if request.Type == "buy" {
@@ -50,6 +52,8 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Exchange: "Litebit",
 			Rate:     math.Round(rate*100) / 100,
 			Amount:   amount,
+			Link:     "https://www.litebit.eu/?referrer=40203",
+			Reviews:  1695,
 		}
 	case *models.BitonicBuy:
 		if request.Currency == "btc" {
@@ -62,6 +66,8 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Exchange: "Bitonic",
 			Rate:     math.Round(exchangeData.Price*100) / 100,
 			Amount:   amount,
+			Link:     "https://bitonic.nl",
+			Reviews:  41,
 		}
 	case *models.BitonicSell:
 		if request.Currency == "btc" {
@@ -74,6 +80,8 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Exchange: "Bitonic",
 			Rate:     math.Round(exchangeData.Price*100) / 100,
 			Amount:   amount,
+			Link:     "https://bitonic.nl",
+			Reviews:  41,
 		}
 	case *models.Btcdirect:
 		if request.Type == "buy" {
@@ -92,6 +100,8 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Exchange: "Btcdirect",
 			Rate:     math.Round(rate*100) / 100,
 			Amount:   amount,
+			Link:     "https://btcdirect.eu",
+			Reviews:  5485,
 		}
 	case *models.BitrushBuy:
 		if request.Currency == "btc" {
@@ -106,6 +116,8 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Exchange: "Bitrush",
 			Rate:     math.Round(rate*100) / 100,
 			Amount:   amount,
+			Link:     "https://bitrush.nl",
+			Reviews:  8,
 		}
 	case *models.BitrushSell:
 		if request.Currency == "btc" {
@@ -120,6 +132,8 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Exchange: "Bitrush",
 			Rate:     math.Round(rate*100) / 100,
 			Amount:   amount,
+			Link:     "https://bitrush.nl",
+			Reviews:  8,
 		}
 	}
 

@@ -7,6 +7,7 @@ import (
 	"html/template"
 	"io/ioutil"
 	"net/http"
+	"sort"
 
 	"bitdeal.nl/etl"
 	"bitdeal.nl/models"
@@ -36,18 +37,23 @@ func GetHomePage(w http.ResponseWriter, r *http.Request) {
 
 	responseData, err := ioutil.ReadAll(response.Body)
 
-	var raw map[string]interface{}
-	json.Unmarshal(responseData, &raw)
-	output, _ := json.Marshal(raw)
+	var exchangePrices models.GetPricesResponse
+	json.Unmarshal(responseData, &exchangePrices)
 
 	// w.Header().Set("content-type", "application/json")
 	// w.Write(output)
 
+	// Functions for the template
+	var funcMap = template.FuncMap{
+		"bestRateToBTC": bestRateToBTC,
+		"wrap":          wrap,
+	}
+
 	templates := addTemplate("templates/pages/homepage.html")
-	tmpl := template.Must(template.ParseFiles(templates...))
+	tmpl := template.Must(template.New("homepage.html").Funcs(funcMap).ParseFiles(templates...))
 	data := models.HomepageData{
-		Title:  "Homepage",
-		Prices: output,
+		Title:          "Homepage",
+		ExchangePrices: exchangePrices,
 	}
 	tmpl.ExecuteTemplate(w, "layout", data)
 }
@@ -85,6 +91,13 @@ func GetPrices(w http.ResponseWriter, r *http.Request) {
 	for i := 0; i < 5; i++ {
 		getPricesResponse.ExchangeRates = append(getPricesResponse.ExchangeRates, etl.Transform(message, <-dataChannel))
 	}
+
+	sort.Slice(getPricesResponse.ExchangeRates[:], func(i, j int) bool {
+		return getPricesResponse.ExchangeRates[i].Rate < getPricesResponse.ExchangeRates[j].Rate
+	})
+
+	getPricesResponse.BestRate = getPricesResponse.ExchangeRates[0].Rate
+	getPricesResponse.MostReviews = 5485
 
 	output, err := json.Marshal(getPricesResponse)
 	if err != nil {
