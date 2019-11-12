@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"html/template"
@@ -15,13 +16,39 @@ import (
 GetHomePage ...
 */
 func GetHomePage(w http.ResponseWriter, r *http.Request) {
+	client := http.Client{}
+
+	requestBody, err := json.Marshal(models.GetPricesData{
+		Type:     "buy",
+		Currency: "eur",
+		Amount:   420,
+	})
+
+	request, err := http.NewRequest("GET", "http://localhost:8003/api/getprices", bytes.NewBuffer(requestBody))
+	if err != nil {
+		fmt.Println(err)
+	}
+	response, err := client.Do(request)
+	if err != nil {
+		fmt.Println(err)
+	}
+	defer response.Body.Close()
+
+	responseData, err := ioutil.ReadAll(response.Body)
+
+	var raw map[string]interface{}
+	json.Unmarshal(responseData, &raw)
+	output, _ := json.Marshal(raw)
+
+	// w.Header().Set("content-type", "application/json")
+	// w.Write(output)
+
 	templates := addTemplate("templates/pages/homepage.html")
 	tmpl := template.Must(template.ParseFiles(templates...))
-
 	data := models.HomepageData{
-		Title: "Homepage",
+		Title:  "Homepage",
+		Prices: output,
 	}
-
 	tmpl.ExecuteTemplate(w, "layout", data)
 }
 
@@ -29,7 +56,7 @@ func GetHomePage(w http.ResponseWriter, r *http.Request) {
 GetPrices ...
 */
 func GetPrices(w http.ResponseWriter, r *http.Request) {
-	// Read JSON body of request and check for errors. For example: buy, euro, 100
+	// Read JSON body of request and check for errors. For example: buy, eur, 100
 	bodyAsByte, err := ioutil.ReadAll(r.Body)
 	defer r.Body.Close()
 	if err != nil {
@@ -46,24 +73,24 @@ func GetPrices(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Send message to the extractor to get data from brokers
-	dataChannel := make(chan interface{}, 2)
+	dataChannel := make(chan interface{}, 5)
 	defer close(dataChannel)
 	go etl.DoRequests(message, dataChannel)
 
-	getPricesResponse := models.GetPricesResponse{}
-	for i := 0; i < 2; i++ {
+	getPricesResponse := models.GetPricesResponse{
+		Type:     message.Type,
+		Currency: message.Currency,
+	}
+
+	for i := 0; i < 5; i++ {
 		getPricesResponse.ExchangeRates = append(getPricesResponse.ExchangeRates, etl.Transform(message, <-dataChannel))
 	}
 
-	fmt.Println(getPricesResponse)
-
-	output, err := json.Marshal(message)
+	output, err := json.Marshal(getPricesResponse)
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 		return
 	}
-
-	fmt.Println("ya don now")
 
 	w.Header().Set("content-type", "application/json")
 	w.Write(output)
