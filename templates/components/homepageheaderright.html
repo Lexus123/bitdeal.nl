@@ -1,11 +1,12 @@
 {{ define "homepageheaderright" }}
 <section class="header-right">
 	<div class="filter">
-		<div class="filter__section filter__section--buttons">
-			<button class="btn btn__buy btn--active">Kopen</button>
-			<button class="btn btn__sell">Verkopen</button>
-		</div>
 		<div class="filter__section filter__section--calc">
+			<div class="calc-field calc-field__buttons">
+				<button type="button" class="switch-button switch-button__left">Kopen</button>
+				<button type="button"
+					class="switch-button switch-button__right switch-button__right--non-active">Verkopen</button>
+			</div>
 			<div class="calc-field calc-field__upper">
 				<label class="label">
 					Betaal

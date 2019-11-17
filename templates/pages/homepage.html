@@ -1,6 +1,31 @@
 {{define "content"}}
 {{template "homepageheader" .}}
 <main class="bitdeals">
+	<div class="bitdeal bitdeal--heading">
+		<div class="heading">
+			<label class="label">
+				Aanbieder
+			</label>
+		</div>
+		<div class="heading">
+			<label class="label">
+				Onderscheiding
+			</label>
+		</div>
+		<div class="heading">
+			<label class="label">
+				Waardering
+			</label>
+		</div>
+		<div class="heading">
+			<label class="label">
+				Ontvang
+			</label>
+		</div>
+		<div class="heading">
+
+		</div>
+	</div>
 	{{$bestrate := .ExchangePrices.BestRate}}
 	{{$mostreviews := .ExchangePrices.MostReviews}}
 	{{range .ExchangePrices.ExchangeRates}}

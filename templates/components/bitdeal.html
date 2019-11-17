@@ -1,29 +1,54 @@
 {{ define "bitdeal" }}
 <div class="bitdeal">
-	<p class="deal__desc desc__company">{{ .Exchange.Exchange }}</p>
+	<div class="bitdeal-company">
+		<p class="deal__desc desc__company">{{ .Exchange.Exchange }}</p>
+		<p class="company-reviews">★★★★★</p>
+		<p class="company-reviews">{{ .Exchange.Reviews }} reviews</p>
+	</div>
+
+	<div class="bitdeal-badge bitdeal-badge--desktop">
+		{{ if (eq .Exchange.Rate .BestRate)}}
+		<div class="deal__desc desc__pill desc__pill--deal">Beste deal!</div>
+		{{ else if (eq .Exchange.Reviews .MostReviews)}}
+		<div class="deal__desc desc__pill desc__pill--review">Meeste reviews!</div>
+		{{ else }}
+		<div class="deal__desc desc__pill desc__pill"></div>
+		{{end}}
+	</div>
+
 	<div class="deal__desc desc__review">
-		<label class="label">
-			Waardering
-		</label>
 		<p class="review--stars">★★★★★</p>
 		<p class="review--text">{{ .Exchange.Reviews }} reviews</p>
 	</div>
+
 	<div class="deal__desc desc__rate">
-		<label class="label">
-			Ontvang
-		</label>
 		<p class="rate-amount">₿ {{ .Exchange.Amount }}</p>
-		<p class="rate">(€ {{ .Exchange.Rate }} / BTC)</p>
+		<p class="rate rate--desktop">(€ {{ .Exchange.Rate }} / BTC)</p>
 	</div>
 
-	{{ if (eq .Exchange.Rate .BestRate)}}
-	<div class="deal__desc desc__pill desc__pill--deal">Beste deal!</div>
-	{{ else if (eq .Exchange.Reviews .MostReviews)}}
-	<div class="deal__desc desc__pill desc__pill--review">Meeste reviews!</div>
-	{{ else }}
-	<div class="deal__desc desc__pill desc__pill"></div>
-	{{end}}
+	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+		focusable="false" width="1.5em" height="1.5em"
+		style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"
+		preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="arrow arrow-left">
+		<path d="M15 4l2 2l-6 6l6 6l-2 2l-8-8z" fill="#7E7E7E" fill-rule="evenodd" />
+		<rect x="0" y="0" width="24" height="24" fill="rgba(126, 126, 126, 0)" /></svg>
 
-	<a class="deal__desc deal__desc--buy btn--company" href={{.Exchange.Link}}>Ga naar {{  .Exchange.Exchange }}</a>
+	<div class="deal__desc desc__rate desc__rate--mobile content">
+		<label class="label">Koers</label>
+		<p class="rate">€ {{ .Exchange.Rate }} / BTC</p>
+	</div>
+
+	<div class="bitdeal-badge bitdeal-badge--mobile content">
+		{{ if (eq .Exchange.Rate .BestRate)}}
+		<div class="deal__desc desc__pill desc__pill--deal">Beste deal!</div>
+		{{ else if (eq .Exchange.Reviews .MostReviews)}}
+		<div class="deal__desc desc__pill desc__pill--review">Meeste reviews!</div>
+		{{ else }}
+		<div class="deal__desc desc__pill desc__pill"></div>
+		{{end}}
+	</div>
+
+	<a class="deal__desc deal__desc--buy btn--company content" href={{.Exchange.Link}}>Ga naar
+		{{ .Exchange.Exchange }}</a>
 </div>
 {{ end }}
