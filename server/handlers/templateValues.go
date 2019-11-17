@@ -14,8 +14,6 @@ var (
 		baseTemplates ...
 	*/
 	baseTemplates = []string{
-		"templates/css/bitdeal.css",
-		"templates/css/responsiveness.css",
 		"templates/components/head.html",
 		"templates/components/homepageheaderright.html",
 		"templates/components/homepageheaderleft.html",

@@ -14,7 +14,7 @@ NewRouter ...
 func NewRouter() *mux.Router {
 	router := mux.NewRouter().StrictSlash(true)
 
-	// Add PATCH requests (update)
+	// Add GET requests
 	for _, route := range routes.GetRoutes {
 		var handler http.Handler
 		handler = route.HandlerFunc
