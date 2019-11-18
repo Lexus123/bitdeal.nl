@@ -15,10 +15,4 @@ var GetRoutes = models.Routes{
 		Pattern:     "/",
 		HandlerFunc: handlers.GetHomePage,
 	},
-	models.Route{
-		Name:        "GetPrices",
-		Method:      "GET",
-		Pattern:     "/api/getprices",
-		HandlerFunc: handlers.GetPrices,
-	},
 }
