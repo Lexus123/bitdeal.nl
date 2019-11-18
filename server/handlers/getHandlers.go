@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
 
 	"bitdeal.nl/models"
 )
@@ -53,7 +54,14 @@ func GetHomePage(w http.ResponseWriter, r *http.Request) {
 		"wrap":          wrap,
 	}
 
-	templates := addTemplate("/var/www/bitdeal.nl/templates/pages/homepage.html")
+	templates := addTemplate("templates/pages/homepage.html")
+
+	if !strings.Contains(r.Host, "localhost") {
+		for s := range templates {
+			templates[s] = "/var/www/bitdeal.nl/" + templates[s]
+		}
+	}
+
 	tmpl := template.Must(template.New("homepage.html").Funcs(funcMap).ParseFiles(templates...))
 	data := models.HomepageData{
 		Title:          "Homepage",
