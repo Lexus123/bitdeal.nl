@@ -16,15 +16,11 @@ import (
 GetHomePage ...
 */
 func GetHomePage(w http.ResponseWriter, r *http.Request) {
-	log.Printf("1")
 	requestBody, err := json.Marshal(models.GetPricesData{
 		Type:     "buy",
 		Currency: "eur",
 		Amount:   420,
 	})
-
-	log.Printf("2")
-	log.Printf("%s", requestBody)
 
 	if err != nil {
 		http.Error(w, err.Error(), 500)
@@ -33,13 +29,10 @@ func GetHomePage(w http.ResponseWriter, r *http.Request) {
 
 	response, err := http.Post("http://localhost:8003/api/getprices", "application/json", bytes.NewBuffer(requestBody))
 
-	log.Printf("3")
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 		return
 	}
-
-	log.Printf("4")
 
 	defer response.Body.Close()
 
@@ -58,8 +51,6 @@ func GetHomePage(w http.ResponseWriter, r *http.Request) {
 	var templatesProduction []string
 
 	templates := addTemplate("templates/pages/homepage.html")
-
-	log.Printf("%s", r.Host)
 
 	if strings.Contains(r.Host, "localhost") {
 		for s := range templates {
