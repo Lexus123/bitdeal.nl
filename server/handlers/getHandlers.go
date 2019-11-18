@@ -52,7 +52,7 @@ func GetHomePage(w http.ResponseWriter, r *http.Request) {
 
 	templates := addTemplate("templates/pages/homepage.html")
 
-	if strings.Contains(r.Host, "localhost") {
+	if !strings.Contains(r.Host, "localhost") {
 		for s := range templates {
 			templatesProduction = append(templatesProduction, "/var/www/bitdeal.nl/"+templates[s])
 		}
