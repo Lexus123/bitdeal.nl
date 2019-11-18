@@ -47,16 +47,13 @@ func GetHomePage(w http.ResponseWriter, r *http.Request) {
 	var exchangePrices models.GetPricesResponse
 	json.Unmarshal(responseData, &exchangePrices)
 
-	// w.Header().Set("content-type", "application/json")
-	// w.Write(output)
-
 	// Functions for the template
 	var funcMap = template.FuncMap{
 		"bestRateToBTC": bestRateToBTC,
 		"wrap":          wrap,
 	}
 
-	templates := addTemplate("templates/pages/homepage.html")
+	templates := addTemplate("./templates/pages/homepage.html")
 	tmpl := template.Must(template.New("homepage.html").Funcs(funcMap).ParseFiles(templates...))
 	data := models.HomepageData{
 		Title:          "Homepage",
