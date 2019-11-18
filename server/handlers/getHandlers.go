@@ -53,7 +53,7 @@ func GetHomePage(w http.ResponseWriter, r *http.Request) {
 		"wrap":          wrap,
 	}
 
-	templates := addTemplate("./templates/pages/homepage.html")
+	templates := addTemplate("/var/www/bitdeal.nl/templates/pages/homepage.html")
 	tmpl := template.Must(template.New("homepage.html").Funcs(funcMap).ParseFiles(templates...))
 	data := models.HomepageData{
 		Title:          "Homepage",
