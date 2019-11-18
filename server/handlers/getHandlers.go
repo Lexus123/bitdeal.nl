@@ -54,15 +54,22 @@ func GetHomePage(w http.ResponseWriter, r *http.Request) {
 		"wrap":          wrap,
 	}
 
+	var tmpl *template.Template
+	var templatesProduction []string
+
 	templates := addTemplate("templates/pages/homepage.html")
 
 	if !strings.Contains(r.Host, "localhost") {
 		for s := range templates {
-			templates[s] = "/var/www/bitdeal.nl/" + templates[s]
+			templatesProduction = append(templatesProduction, "/var/www/bitdeal.nl/"+templates[s])
 		}
+		tmpl = template.Must(template.New("homepage.html").Funcs(funcMap).ParseFiles(templatesProduction...))
+		log.Printf("%s", templatesProduction)
+	} else {
+		tmpl = template.Must(template.New("homepage.html").Funcs(funcMap).ParseFiles(templates...))
+		log.Printf("%s", templates)
 	}
 
-	tmpl := template.Must(template.New("homepage.html").Funcs(funcMap).ParseFiles(templates...))
 	data := models.HomepageData{
 		Title:          "Homepage",
 		ExchangePrices: exchangePrices,
