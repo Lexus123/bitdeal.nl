@@ -2,10 +2,10 @@ package models
 
 // Configurations exported
 type Configurations struct {
-	Server		ServerConfigurations
-	Database	DatabaseConfigurations
-	ExamplePath	string
-	ExampleVar	string
+	Server      ServerConfigurations
+	Database    DatabaseConfigurations
+	ExamplePath string
+	ExampleVar  string
 }
 
 // ServerConfigurations exported

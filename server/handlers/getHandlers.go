@@ -3,13 +3,14 @@ package handlers
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"html/template"
 	"io/ioutil"
-	"log"
 	"net/http"
-	"strings"
 
 	"bitdeal.nl/models"
+
+	"github.com/spf13/viper"
 )
 
 /*
@@ -52,15 +53,28 @@ func GetHomePage(w http.ResponseWriter, r *http.Request) {
 
 	templates := addTemplate("templates/pages/homepage.html")
 
-	if !strings.Contains(r.Host, "localhost") {
+	// Set the file name of the configurations file
+	viper.SetConfigName("config")
+
+	// Set the path to look for the configurations file
+	viper.AddConfigPath(".")
+
+	// Enable VIPER to read Environment Variables
+	viper.AutomaticEnv()
+
+	viper.SetConfigType("yml")
+
+	if err := viper.ReadInConfig(); err != nil {
+		fmt.Printf("Error reading config file, %s", err)
+	}
+
+	if viper.GetString("environment") == "production" {
 		for s := range templates {
 			templatesProduction = append(templatesProduction, "/var/www/bitdeal.nl/"+templates[s])
 		}
 		tmpl = template.Must(template.New("homepage.html").Funcs(funcMap).ParseFiles(templatesProduction...))
-		log.Printf("%s", templatesProduction)
 	} else {
 		tmpl = template.Must(template.New("homepage.html").Funcs(funcMap).ParseFiles(templates...))
-		log.Printf("%s", templates)
 	}
 
 	data := models.HomepageData{
