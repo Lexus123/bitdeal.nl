@@ -3,7 +3,6 @@ package handlers
 import (
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"sort"
 
@@ -15,7 +14,6 @@ import (
 GetPrices ...
 */
 func GetPrices(w http.ResponseWriter, r *http.Request) {
-	log.Printf("1")
 	// Read JSON body of request and check for errors. For example: buy, eur, 100
 	bodyAsByte, err := ioutil.ReadAll(r.Body)
 	defer r.Body.Close()
@@ -23,8 +21,6 @@ func GetPrices(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), 500)
 		return
 	}
-	log.Printf("2")
-	log.Printf("%s", bodyAsByte)
 
 	// Unmarshal the body and check for errors
 	var message models.GetPricesData
@@ -33,14 +29,12 @@ func GetPrices(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), 500)
 		return
 	}
-	log.Printf("3")
 
 	// Send message to the extractor to get data from brokers
 	dataChannel := make(chan interface{}, 5)
 	defer close(dataChannel)
 	go etl.DoRequests(message, dataChannel)
 
-	log.Printf("4")
 	getPricesResponse := models.GetPricesResponse{
 		Type:     message.Type,
 		Currency: message.Currency,
@@ -49,27 +43,22 @@ func GetPrices(w http.ResponseWriter, r *http.Request) {
 	for i := 0; i < 5; i++ {
 		getPricesResponse.ExchangeRates = append(getPricesResponse.ExchangeRates, etl.Transform(message, <-dataChannel))
 	}
-	log.Printf("5")
 
 	sort.Slice(getPricesResponse.ExchangeRates[:], func(i, j int) bool {
 		return getPricesResponse.ExchangeRates[i].Rate < getPricesResponse.ExchangeRates[j].Rate
 	})
-	log.Printf("5")
 
 	getPricesResponse.BestRate = getPricesResponse.ExchangeRates[0].Rate
 	getPricesResponse.MostReviews = 5485
 
-	log.Printf("7")
 	output, err := json.Marshal(getPricesResponse)
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 		return
 	}
-	log.Printf("8")
 
 	w.Header().Set("content-type", "application/json")
 	w.Write(output)
-	log.Printf("9")
 }
 
 // /*

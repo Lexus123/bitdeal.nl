@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"html/template"
 	"io/ioutil"
+	"log"
 	"net/http"
 
 	"bitdeal.nl/models"
@@ -14,11 +15,15 @@ import (
 GetHomePage ...
 */
 func GetHomePage(w http.ResponseWriter, r *http.Request) {
+	log.Printf("1")
 	requestBody, err := json.Marshal(models.GetPricesData{
 		Type:     "buy",
 		Currency: "eur",
 		Amount:   420,
 	})
+
+	log.Printf("2")
+	log.Printf("%s", requestBody)
 
 	if err != nil {
 		http.Error(w, err.Error(), 500)
@@ -27,10 +32,13 @@ func GetHomePage(w http.ResponseWriter, r *http.Request) {
 
 	response, err := http.Post("https://localhost:8003/api/getprices", "application/json", bytes.NewBuffer(requestBody))
 
+	log.Printf("3")
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 		return
 	}
+
+	log.Printf("4")
 
 	defer response.Body.Close()
 
