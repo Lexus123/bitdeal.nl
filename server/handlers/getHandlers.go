@@ -25,7 +25,7 @@ func GetHomePage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response, err := http.Post("http://localhost:8003/api/getprices", "application/json", bytes.NewBuffer(requestBody))
+	response, err := http.Post("https://localhost:8003/api/getprices", "application/json", bytes.NewBuffer(requestBody))
 
 	if err != nil {
 		http.Error(w, err.Error(), 500)
