@@ -72,12 +72,13 @@ func GetPrices(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	log.Printf("2")
+	log.Printf("%s", bodyAsByte)
 
 	// Unmarshal the body and check for errors
 	var message models.GetPricesData
 	err = json.Unmarshal(bodyAsByte, &message)
 	if err != nil {
-		http.Error(w, err.Error()+"Ik ga hier fout", 500)
+		http.Error(w, err.Error(), 500)
 		return
 	}
 	log.Printf("3")
