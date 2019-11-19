@@ -20,7 +20,7 @@ func GetHomePage(w http.ResponseWriter, r *http.Request) {
 	requestBody, err := json.Marshal(models.GetPricesData{
 		Type:     "buy",
 		Currency: "eur",
-		Amount:   420,
+		Amount:   "420",
 	})
 
 	if err != nil {

@@ -11,9 +11,9 @@ type Exchange struct {
 GetPricesData ...
 */
 type GetPricesData struct {
-	Type     string  `json:"type"`
-	Currency string  `json:"currency"`
-	Amount   float64 `json:"amount"`
+	Type     string `json:"type"`
+	Currency string `json:"currency"`
+	Amount   string `json:"amount"`
 }
 
 /*

@@ -144,23 +144,19 @@ func fetchPrices(request models.GetPricesData, exchange models.Exchange, dataCha
 		resp, err = http.Get(exchange.URL + exchange.Endpoint)
 		break
 	case "BitonicBuy":
-		amount := fmt.Sprintf("%f", request.Amount)
-		resp, err = http.Get(exchange.URL + exchange.Endpoint + amount)
+		resp, err = http.Get(exchange.URL + exchange.Endpoint + request.Amount)
 		break
 	case "BitonicSell":
-		amount := fmt.Sprintf("%f", request.Amount)
-		resp, err = http.Get(exchange.URL + exchange.Endpoint + amount)
+		resp, err = http.Get(exchange.URL + exchange.Endpoint + request.Amount)
 		break
 	case "Btcdirect":
 		resp, err = http.Get(exchange.URL + exchange.Endpoint)
 		break
 	case "BitrushBuy":
-		amount := fmt.Sprintf("%f", request.Amount)
-		resp, err = http.Get(exchange.URL + exchange.Endpoint + amount)
+		resp, err = http.Get(exchange.URL + exchange.Endpoint + request.Amount)
 		break
 	case "BitrushSell":
-		amount := fmt.Sprintf("%f", request.Amount)
-		resp, err = http.Get(exchange.URL + exchange.Endpoint + amount)
+		resp, err = http.Get(exchange.URL + exchange.Endpoint + request.Amount)
 		break
 	}
 

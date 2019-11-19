@@ -4,11 +4,16 @@ $(document).ready(function () {
 
 	var buyButton = document.getElementById("buy-button");
 	var sellButton = document.getElementById("sell-button");
+	var eurLabel = document.getElementById("eur-label");
+	var btcLabel = document.getElementById("btc-label");
 
 	buyButton.addEventListener("click", () => {
 		if (buyButton.classList.contains("switch-button__left--non-active")) {
 			buyButton.classList.toggle("switch-button__left--non-active");
 			sellButton.classList.toggle("switch-button__right--non-active");
+			eurLabel.innerHTML = "Betaal";
+			btcLabel.innerHTML = "Ontvang";
+			calculatorState = "buy";
 		}
 	});
 
@@ -16,6 +21,9 @@ $(document).ready(function () {
 		if (sellButton.classList.contains("switch-button__right--non-active")) {
 			buyButton.classList.toggle("switch-button__left--non-active");
 			sellButton.classList.toggle("switch-button__right--non-active");
+			eurLabel.innerHTML = "Ontvang";
+			btcLabel.innerHTML = "Betaal";
+			calculatorState = "sell";
 		}
 	});
 
@@ -40,7 +48,6 @@ $(document).ready(function () {
 					};
 				}
 			});
-
 		}
 
 		for (c = 0; c < coll[1].children.length; c++) {
@@ -66,6 +73,11 @@ $(document).ready(function () {
 // }
 
 var MOBILE_WIDTH = 991;
+var calculatorState = "buy";
+
+function getCalculatorState() {
+	return calculatorState;
+}
 
 function getViewportWidth() {
 	return Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
@@ -86,11 +98,47 @@ function debounce(func, wait = 100) {
 }
 
 function getEurPrices() {
-	console.log(document.getElementById("eur").value);
+	if (getCalculatorState() === "buy") {
+		bitdealCall("buy", "eur", document.getElementById("eur").value);
+		console.log("Koop zoveel EUR:")
+		console.log(document.getElementById("eur").value);
+	} else {
+		bitdealCall("sell", "eur", document.getElementById("eur").value);
+		console.log("Verkoop zoveel EUR:")
+		console.log(document.getElementById("eur").value);
+	}
 }
 
 function getBtcPrices() {
-	console.log(document.getElementById("btc").value);
+	if (getCalculatorState() === "buy") {
+		bitdealCall("buy", "btc", document.getElementById("btc").value);
+		console.log("Koop zoveel BTC:")
+		console.log(document.getElementById("btc").value);
+	} else {
+		bitdealCall("sell", "btc", document.getElementById("btc").value);
+		console.log("Verkoop zoveel BTC:")
+		console.log(document.getElementById("btc").value);
+	}
+}
+
+function bitdealCall(type, currency, amount) {
+	$.ajax({
+		url: "/api/getprices",
+		type: "POST",
+		contentType: "application/json; charset=utf-8",
+		dataType: "json",
+		data: JSON.stringify({
+			"type": type,
+			"currency": currency,
+			"amount": amount
+		}),
+		success: function (response) {
+			console.log(response);
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+			console.log(textStatus, errorThrown);
+		}
+	});
 }
 
 const debouncedEur = debounce(getEurPrices, 300);

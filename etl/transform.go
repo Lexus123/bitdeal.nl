@@ -22,10 +22,12 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			rate, _ = strconv.ParseFloat(exchangeData.Bids[0][0], 32)
 		}
 
+		reqAmount, _ := strconv.ParseFloat(request.Amount, 64)
+
 		if request.Currency == "btc" {
-			amount = math.Round(request.Amount*rate*100) / 100
+			amount = math.Round(reqAmount*rate*100) / 100
 		} else {
-			amount = math.Round(request.Amount/rate*100000000) / 100000000
+			amount = math.Round(reqAmount/rate*100000000) / 100000000
 		}
 
 		return models.ExchangeRate{
@@ -42,10 +44,12 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			rate, _ = strconv.ParseFloat(exchangeData.Result.Sell, 32)
 		}
 
+		reqAmount, _ := strconv.ParseFloat(request.Amount, 64)
+
 		if request.Currency == "btc" {
-			amount = math.Round(request.Amount*rate*100) / 100
+			amount = math.Round(reqAmount*rate*100) / 100
 		} else {
-			amount = math.Round(request.Amount/rate*100000000) / 100000000
+			amount = math.Round(reqAmount/rate*100000000) / 100000000
 		}
 
 		return models.ExchangeRate{
@@ -90,10 +94,12 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			rate, _ = strconv.ParseFloat(exchangeData.ExchangeRates.Buy.Btc, 32)
 		}
 
+		reqAmount, _ := strconv.ParseFloat(request.Amount, 64)
+
 		if request.Currency == "btc" {
-			amount = math.Round(request.Amount*rate*100) / 100
+			amount = math.Round(reqAmount*rate*100) / 100
 		} else {
-			amount = math.Round(request.Amount/rate*100000000) / 100000000
+			amount = math.Round(reqAmount/rate*100000000) / 100000000
 		}
 
 		return models.ExchangeRate{
@@ -104,11 +110,12 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Reviews:  5485,
 		}
 	case *models.BitrushBuy:
+		reqAmount, _ := strconv.ParseFloat(request.Amount, 64)
 		if request.Currency == "btc" {
-			rate = exchangeData.Amount / request.Amount
+			rate = exchangeData.Amount / reqAmount
 			amount = math.Round(exchangeData.Amount*100) / 100
 		} else {
-			rate = request.Amount / exchangeData.Amount
+			rate = reqAmount / exchangeData.Amount
 			amount = exchangeData.Amount
 		}
 
@@ -120,11 +127,12 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Reviews:  8,
 		}
 	case *models.BitrushSell:
+		reqAmount, _ := strconv.ParseFloat(request.Amount, 64)
 		if request.Currency == "btc" {
-			rate = exchangeData.Amount / request.Amount
+			rate = exchangeData.Amount / reqAmount
 			amount = math.Round(exchangeData.Amount*100) / 100
 		} else {
-			rate = request.Amount / exchangeData.Amount
+			rate = reqAmount / exchangeData.Amount
 			amount = exchangeData.Amount
 		}
 
