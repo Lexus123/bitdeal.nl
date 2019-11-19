@@ -17,7 +17,7 @@ section {
 input {
 	border: 0;
 	/* color: #7E7E7E; */
-	color: #696969;
+	color: #595959;
 	height: 100%;
 	font-size: 28px;
 }
@@ -60,7 +60,7 @@ h1 span {
 p, a, div {
 	font-family: Arial, Helvetica, sans-serif;
 	/* color: #7E7E7E; */
-	color: #696969;
+	color: #595959;
 }
 
 a {
@@ -151,7 +151,7 @@ nav {
 	width: 100%;
 	font-weight: bold;
 	/* color: #7E7E7E; */
-	color: #696969;
+	color: #595959;
 	outline: none;
 	background: white;
 	border: 1px solid #DBDBDB;
