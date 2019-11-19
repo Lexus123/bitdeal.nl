@@ -20,10 +20,11 @@ $(document).ready(function () {
 	});
 
 	var coll = document.getElementsByClassName("bitdeal");
+	var i;
 
 	if (isViewportHandAndSmaller()) {
 		for (i = 0; i < coll.length; i++) {
-			coll[i].addEventListener("click", () => {
+			coll[i].addEventListener("click", function () {
 				var content = this.children;
 				for (c = 0; c < content.length; c++) {
 					if (content[c].classList.contains("content")) {
@@ -39,6 +40,7 @@ $(document).ready(function () {
 					};
 				}
 			});
+
 		}
 
 		for (c = 0; c < coll[1].children.length; c++) {
@@ -63,7 +65,7 @@ $(document).ready(function () {
 // 	}
 // }
 
-const MOBILE_WIDTH = 991;
+var MOBILE_WIDTH = 991;
 
 function getViewportWidth() {
 	return Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
