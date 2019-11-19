@@ -1,11 +1,13 @@
 $(document).ready(function () {
-	document.getElementById("eur").addEventListener("keyup", debouncedEur);
-	document.getElementById("btc").addEventListener("keyup", debouncedBtc);
-
+	var eurInput = document.getElementById("eur");
+	var btcInput = document.getElementById("btc");
 	var buyButton = document.getElementById("buy-button");
 	var sellButton = document.getElementById("sell-button");
 	var eurLabel = document.getElementById("eur-label");
 	var btcLabel = document.getElementById("btc-label");
+
+	eurInput.addEventListener("keyup", debouncedEur);
+	btcInput.addEventListener("keyup", debouncedBtc);
 
 	buyButton.addEventListener("click", () => {
 		if (buyButton.classList.contains("switch-button__left--non-active")) {
@@ -62,16 +64,6 @@ $(document).ready(function () {
 	}
 });
 
-// window.onload = function () {
-// 	if (window.jQuery) {
-// 		// jQuery is loaded  
-// 		console.log("Yeah!");
-// 	} else {
-// 		// jQuery is not loaded
-// 		console.log("Doesn't Work");
-// 	}
-// }
-
 var MOBILE_WIDTH = 991;
 var calculatorState = "buy";
 
@@ -100,24 +92,16 @@ function debounce(func, wait = 100) {
 function getEurPrices() {
 	if (getCalculatorState() === "buy") {
 		bitdealCall("buy", "eur", document.getElementById("eur").value);
-		console.log("Koop zoveel EUR:")
-		console.log(document.getElementById("eur").value);
 	} else {
 		bitdealCall("sell", "eur", document.getElementById("eur").value);
-		console.log("Verkoop zoveel EUR:")
-		console.log(document.getElementById("eur").value);
 	}
 }
 
 function getBtcPrices() {
 	if (getCalculatorState() === "buy") {
 		bitdealCall("buy", "btc", document.getElementById("btc").value);
-		console.log("Koop zoveel BTC:")
-		console.log(document.getElementById("btc").value);
 	} else {
 		bitdealCall("sell", "btc", document.getElementById("btc").value);
-		console.log("Verkoop zoveel BTC:")
-		console.log(document.getElementById("btc").value);
 	}
 }
 
@@ -133,12 +117,58 @@ function bitdealCall(type, currency, amount) {
 			"amount": amount
 		}),
 		success: function (response) {
-			console.log(response);
+			applyNewPrices(response);
 		},
 		error: function (jqXHR, textStatus, errorThrown) {
 			console.log(textStatus, errorThrown);
 		}
 	});
+}
+
+function applyNewPrices(priceData) {
+	console.log(priceData);
+
+	if (priceData.currency === "eur") {
+		document.getElementById("btc").value = priceData.bestamount;
+	} else {
+		document.getElementById("eur").value = priceData.bestamount;
+	}
+
+	for (exchangeIndex = 0; exchangeIndex < priceData.exchangerates.length; exchangeIndex++) {
+		var bitdeal = document.getElementById(priceData.exchangerates[exchangeIndex].exchange);
+		var bitdealChildren = bitdeal.children;
+
+		// DESKTOP
+		// Company name update
+		var bitdealName = bitdealChildren[0].children[0];
+		bitdealName.innerHTML = priceData.exchangerates[exchangeIndex].exchange;
+
+		// Badge update
+		var bitdealBadge = bitdealChildren[1].children[0];
+		bitdealBadge.classList.remove("desc__pill--deal");
+		bitdealBadge.classList.remove("desc__pill--review");
+		bitdealBadge.innerHTML = "";
+		if (priceData.mostreviews === priceData.exchangerates[exchangeIndex].reviews) {
+			bitdealBadge.innerHTML = "Meeste reviews!";
+			bitdealBadge.classList.add("desc__pill--review");
+		}
+		if (priceData.bestamount === priceData.exchangerates[exchangeIndex].amount) {
+			bitdealBadge.innerHTML = "Beste deal!";
+			bitdealBadge.classList.add("desc__pill--deal");
+		}
+
+		// Amount update
+		var bitdealAmount = bitdealChildren[3].children[0];
+		bitdealAmount.innerHTML = "₿ " + priceData.exchangerates[exchangeIndex].amount;
+
+		// Rate update
+		var bitdealRate = bitdealChildren[3].children[1];
+		bitdealRate.innerHTML = "(€ " + priceData.exchangerates[exchangeIndex].rate + " / BTC)";
+
+		// Link update
+
+		console.log(bitdealChildren[1].children);
+	}
 }
 
 const debouncedEur = debounce(getEurPrices, 300);

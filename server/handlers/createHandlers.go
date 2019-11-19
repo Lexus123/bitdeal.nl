@@ -35,20 +35,30 @@ func GetPrices(w http.ResponseWriter, r *http.Request) {
 	defer close(dataChannel)
 	go etl.DoRequests(message, dataChannel)
 
+	// Prepare the response message
 	getPricesResponse := models.GetPricesResponse{
 		Type:     message.Type,
 		Currency: message.Currency,
 	}
 
+	// For each exchange, transform the data and put it in the response
 	for i := 0; i < 5; i++ {
 		getPricesResponse.ExchangeRates = append(getPricesResponse.ExchangeRates, etl.Transform(message, <-dataChannel))
 	}
 
-	sort.Slice(getPricesResponse.ExchangeRates[:], func(i, j int) bool {
-		return getPricesResponse.ExchangeRates[i].Rate < getPricesResponse.ExchangeRates[j].Rate
-	})
+	// Sort the prices according to the request
+	if getPricesResponse.Type == "buy" {
+		sort.Slice(getPricesResponse.ExchangeRates[:], func(i, j int) bool {
+			return getPricesResponse.ExchangeRates[i].Rate < getPricesResponse.ExchangeRates[j].Rate
+		})
+	} else {
+		sort.Slice(getPricesResponse.ExchangeRates[:], func(i, j int) bool {
+			return getPricesResponse.ExchangeRates[i].Rate > getPricesResponse.ExchangeRates[j].Rate
+		})
+	}
 
 	getPricesResponse.BestRate = getPricesResponse.ExchangeRates[0].Rate
+	getPricesResponse.BestAmount = getPricesResponse.ExchangeRates[0].Amount
 	getPricesResponse.MostReviews = 5485
 
 	output, err := json.Marshal(getPricesResponse)

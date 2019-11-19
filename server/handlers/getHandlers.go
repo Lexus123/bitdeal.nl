@@ -44,8 +44,8 @@ func GetHomePage(w http.ResponseWriter, r *http.Request) {
 
 	// Functions for the template
 	var funcMap = template.FuncMap{
-		"bestRateToBTC": bestRateToBTC,
-		"wrap":          wrap,
+		"stars": stars,
+		"wrap":  wrap,
 	}
 
 	var tmpl *template.Template

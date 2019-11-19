@@ -1,5 +1,5 @@
 {{ define "bitdeal" }}
-<div class="bitdeal">
+<div class="bitdeal" id={{.Exchange.Exchange}}>
 	<div class="bitdeal-company">
 		<p class="deal__desc desc__company">{{ .Exchange.Exchange }}</p>
 		<p class="company-reviews">★★★★★</p>
@@ -17,7 +17,7 @@
 	</div>
 
 	<div class="deal__desc desc__review">
-		<p class="review--stars">★★★★★</p>
+		<p class="review--stars">{{ stars .Exchange.Stars }}</p>
 		<p class="review--text">{{ .Exchange.Reviews }} reviews</p>
 	</div>
 

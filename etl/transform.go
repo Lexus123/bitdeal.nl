@@ -36,6 +36,7 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Amount:   amount,
 			Link:     "https://bitvavo.com/?a=C23D4F6D97",
 			Reviews:  1895,
+			Stars:    5,
 		}
 	case *models.Litebit:
 		if request.Type == "buy" {
@@ -58,6 +59,7 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Amount:   amount,
 			Link:     "https://www.litebit.eu/?referrer=40203",
 			Reviews:  1695,
+			Stars:    5,
 		}
 	case *models.BitonicBuy:
 		if request.Currency == "btc" {
@@ -72,6 +74,7 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Amount:   amount,
 			Link:     "https://bitonic.nl",
 			Reviews:  41,
+			Stars:    4,
 		}
 	case *models.BitonicSell:
 		if request.Currency == "btc" {
@@ -86,6 +89,7 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Amount:   amount,
 			Link:     "https://bitonic.nl",
 			Reviews:  41,
+			Stars:    4,
 		}
 	case *models.Btcdirect:
 		if request.Type == "buy" {
@@ -108,6 +112,7 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Amount:   amount,
 			Link:     "https://btcdirect.eu",
 			Reviews:  5485,
+			Stars:    5,
 		}
 	case *models.BitrushBuy:
 		reqAmount, _ := strconv.ParseFloat(request.Amount, 64)
@@ -124,7 +129,8 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Rate:     math.Round(rate*100) / 100,
 			Amount:   amount,
 			Link:     "https://bitrush.nl",
-			Reviews:  8,
+			Reviews:  7,
+			Stars:    4,
 		}
 	case *models.BitrushSell:
 		reqAmount, _ := strconv.ParseFloat(request.Amount, 64)
@@ -141,7 +147,8 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Rate:     math.Round(rate*100) / 100,
 			Amount:   amount,
 			Link:     "https://bitrush.nl",
-			Reviews:  8,
+			Reviews:  7,
+			Stars:    4,
 		}
 	}
 

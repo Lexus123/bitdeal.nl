@@ -23,6 +23,7 @@ type GetPricesResponse struct {
 	Type          string         `json:"type"`
 	Currency      string         `json:"currency"`
 	BestRate      float64        `json:"bestrate"`
+	BestAmount    float64        `json:"bestamount"`
 	MostReviews   int            `json:"mostreviews"`
 	ExchangeRates []ExchangeRate `json:"exchangerates"`
 }
@@ -36,6 +37,7 @@ type ExchangeRate struct {
 	Amount   float64 `json:"amount"`
 	Link     string  `json:"link"`
 	Reviews  int     `json:"reviews"`
+	Stars    int     `json:"stars"`
 }
 
 /*
