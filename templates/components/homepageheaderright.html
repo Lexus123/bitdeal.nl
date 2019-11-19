@@ -3,8 +3,8 @@
 	<div class="filter">
 		<div class="filter__section filter__section--calc">
 			<div class="calc-field calc-field__buttons">
-				<button type="button" class="switch-button switch-button__left">Kopen</button>
-				<button type="button"
+				<button type="button" id="buy-button" class="switch-button switch-button__left">Kopen</button>
+				<button type="button" id="sell-button"
 					class="switch-button switch-button__right switch-button__right--non-active">Verkopen</button>
 			</div>
 			<div class="calc-field calc-field__upper">
@@ -14,7 +14,7 @@
 				<div class="amount__section">
 					<div class="amount__input amount__input--euro">
 						<label for="euro">€</label>
-						<input name="euro" value="420.00" type="number" />
+						<input id="eur" name="euro" value="420.00" type="number" />
 					</div>
 					<div class="asset">
 						Euro
@@ -28,7 +28,7 @@
 				<div class="amount__section">
 					<div class="amount__input amount__input--btc">
 						<label for="btc">₿</label>
-						<input name="btc" value={{bestRateToBTC .ExchangePrices.BestRate}} type="number" />
+						<input id="btc" name="btc" value={{bestRateToBTC .ExchangePrices.BestRate}} type="number" />
 					</div>
 					<div class="asset">
 						Btc

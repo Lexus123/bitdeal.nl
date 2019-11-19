@@ -21,7 +21,6 @@
 
 	.bitdeal {
 		grid-template-columns: repeat(9, 1fr);
-		transition: all 200ms ease;
 	}
 
 	.deal__desc {
@@ -86,7 +85,11 @@
 	.arrow {
 		display: block;
 		justify-self: end;
-		/* align-self: start; */
+		transition: all 200ms ease;
+	}
+
+	.active-arrow {
+		transform: rotate(270deg) !important;
 	}
 
 	.bitdeal-badge--mobile {
