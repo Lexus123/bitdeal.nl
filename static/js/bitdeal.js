@@ -120,28 +120,20 @@ function getBtcPrices() {
 }
 
 function bitdealCall(type, currency, amount) {
-	$.ajax({
-		url: "/api/getprices",
-		type: "POST",
-		contentType: "application/json; charset=utf-8",
-		dataType: "json",
-		data: JSON.stringify({
+	fetch('/api/getprices', {
+		method: 'POST',
+		headers: new Headers(),
+		body: JSON.stringify({
 			"type": type,
 			"currency": currency,
 			"amount": amount
-		}),
-		success: function (response) {
-			applyNewPrices(response);
-		},
-		error: function (jqXHR, textStatus, errorThrown) {
-			console.log(textStatus, errorThrown);
-		}
-	});
+		})
+	}).then((res) => res.json())
+		.then((data) => applyNewPrices(data))
+		.catch((err) => console.log(err))
 }
 
 function applyNewPrices(priceData) {
-	console.log(priceData);
-
 	if (priceData.currency === "eur") {
 		document.getElementById("btc").value = priceData.bestamount;
 	} else {
