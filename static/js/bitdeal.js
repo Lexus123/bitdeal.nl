@@ -1,10 +1,12 @@
-$(document).ready(function () {
+document.addEventListener("DOMContentLoaded", function (event) {
 	var eurInput = document.getElementById("eur");
 	var btcInput = document.getElementById("btc");
 	var buyButton = document.getElementById("buy-button");
 	var sellButton = document.getElementById("sell-button");
 	var eurLabel = document.getElementById("eur-label");
 	var btcLabel = document.getElementById("btc-label");
+	var more = document.getElementById("more");
+	var less = document.getElementById("less");
 
 	eurInput.addEventListener("keyup", debouncedEur);
 	btcInput.addEventListener("keyup", debouncedBtc);
@@ -15,6 +17,8 @@ $(document).ready(function () {
 			sellButton.classList.toggle("switch-button__right--non-active");
 			eurLabel.innerHTML = "Betaal";
 			btcLabel.innerHTML = "Ontvang";
+			more.innerHTML = "bitcoins";
+			less.innerHTML = "euro's";
 			calculatorState = "buy";
 		}
 	});
@@ -25,6 +29,8 @@ $(document).ready(function () {
 			sellButton.classList.toggle("switch-button__right--non-active");
 			eurLabel.innerHTML = "Ontvang";
 			btcLabel.innerHTML = "Betaal";
+			more.innerHTML = "euro's";
+			less.innerHTML = "bitcoins";
 			calculatorState = "sell";
 		}
 	});
@@ -92,16 +98,24 @@ function debounce(func, wait = 100) {
 function getEurPrices() {
 	if (getCalculatorState() === "buy") {
 		bitdealCall("buy", "eur", document.getElementById("eur").value);
+		var getLabel = document.getElementsByClassName("bitdeal--heading")[0].children[3].children[0];
+		getLabel.innerHTML = "Ontvang";
 	} else {
 		bitdealCall("sell", "eur", document.getElementById("eur").value);
+		var getLabel = document.getElementsByClassName("bitdeal--heading")[0].children[3].children[0];
+		getLabel.innerHTML = "BETAAL";
 	}
 }
 
 function getBtcPrices() {
 	if (getCalculatorState() === "buy") {
 		bitdealCall("buy", "btc", document.getElementById("btc").value);
+		var getLabel = document.getElementsByClassName("bitdeal--heading")[0].children[3].children[0];
+		getLabel.innerHTML = "Betaal";
 	} else {
 		bitdealCall("sell", "btc", document.getElementById("btc").value);
+		var getLabel = document.getElementsByClassName("bitdeal--heading")[0].children[3].children[0];
+		getLabel.innerHTML = "Ontvang";
 	}
 }
 
@@ -135,11 +149,8 @@ function applyNewPrices(priceData) {
 	}
 
 	var bitdeals = document.getElementsByClassName("bitdeal");
-	console.log(bitdeals);
 
 	for (exchangeIndex = 0; exchangeIndex < priceData.exchangerates.length; exchangeIndex++) {
-		console.log(bitdeals);
-		// var bitdeal = document.getElementById(priceData.exchangerates[exchangeIndex].exchange);
 		var bitdealChildren = bitdeals[exchangeIndex + 1].children;
 
 		// MOBILE
@@ -206,8 +217,6 @@ function applyNewPrices(priceData) {
 		var bitdealLink = bitdealChildren[7];
 		bitdealLink.innerHTML = "Ga naar " + priceData.exchangerates[exchangeIndex].exchange;
 		bitdealLink.href = priceData.exchangerates[exchangeIndex].link;
-
-		console.log(bitdealChildren);
 	}
 }
 
