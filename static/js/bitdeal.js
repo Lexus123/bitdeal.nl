@@ -134,9 +134,30 @@ function applyNewPrices(priceData) {
 		document.getElementById("eur").value = priceData.bestamount;
 	}
 
+	var bitdeals = document.getElementsByClassName("bitdeal");
+	console.log(bitdeals);
+
 	for (exchangeIndex = 0; exchangeIndex < priceData.exchangerates.length; exchangeIndex++) {
-		var bitdeal = document.getElementById(priceData.exchangerates[exchangeIndex].exchange);
-		var bitdealChildren = bitdeal.children;
+		console.log(bitdeals);
+		// var bitdeal = document.getElementById(priceData.exchangerates[exchangeIndex].exchange);
+		var bitdealChildren = bitdeals[exchangeIndex + 1].children;
+
+		// MOBILE
+		// Stars update
+		var bitdealStars = bitdealChildren[0].children[1];
+		if (priceData.exchangerates[exchangeIndex].stars === 4) {
+			bitdealStars.innerHTML = "★★★★";
+		} else {
+			bitdealStars.innerHTML = "★★★★★";
+		}
+
+		// Reviews update
+		var bitdealReviews = bitdealChildren[0].children[2];
+		bitdealReviews.innerHTML = priceData.exchangerates[exchangeIndex].reviews + " reviews";
+
+		// Rate update
+		var bitdealRate = bitdealChildren[5].children[1];
+		bitdealRate.innerHTML = "€ " + priceData.exchangerates[exchangeIndex].rate + " / BTC";
 
 		// DESKTOP
 		// Company name update
@@ -159,15 +180,34 @@ function applyNewPrices(priceData) {
 
 		// Amount update
 		var bitdealAmount = bitdealChildren[3].children[0];
-		bitdealAmount.innerHTML = "₿ " + priceData.exchangerates[exchangeIndex].amount;
+		if (priceData.currency === "eur") {
+			bitdealAmount.innerHTML = "₿ " + priceData.exchangerates[exchangeIndex].amount;
+		} else {
+			bitdealAmount.innerHTML = "€ " + priceData.exchangerates[exchangeIndex].amount;
+		}
 
 		// Rate update
 		var bitdealRate = bitdealChildren[3].children[1];
 		bitdealRate.innerHTML = "(€ " + priceData.exchangerates[exchangeIndex].rate + " / BTC)";
 
-		// Link update
+		// Stars update
+		var bitdealStars = bitdealChildren[2].children[0];
+		if (priceData.exchangerates[exchangeIndex].stars === 4) {
+			bitdealStars.innerHTML = "★★★★";
+		} else {
+			bitdealStars.innerHTML = "★★★★★";
+		}
 
-		console.log(bitdealChildren[1].children);
+		// Reviews update
+		var bitdealReviews = bitdealChildren[2].children[1];
+		bitdealReviews.innerHTML = priceData.exchangerates[exchangeIndex].reviews + " reviews";
+
+		// Link update
+		var bitdealLink = bitdealChildren[7];
+		bitdealLink.innerHTML = "Ga naar " + priceData.exchangerates[exchangeIndex].exchange;
+		bitdealLink.href = priceData.exchangerates[exchangeIndex].link;
+
+		console.log(bitdealChildren);
 	}
 }
 
