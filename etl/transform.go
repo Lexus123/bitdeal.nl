@@ -72,7 +72,7 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Exchange: "Bitonic",
 			Rate:     math.Round(exchangeData.Price*100) / 100,
 			Amount:   amount,
-			Link:     "https://bitonic.nl",
+			Link:     "https://bitonic.nl/?partner=777",
 			Reviews:  41,
 			Stars:    4,
 		}
@@ -87,7 +87,7 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Exchange: "Bitonic",
 			Rate:     math.Round(exchangeData.Price*100) / 100,
 			Amount:   amount,
-			Link:     "https://bitonic.nl",
+			Link:     "https://bitonic.nl/?partner=777",
 			Reviews:  41,
 			Stars:    4,
 		}
