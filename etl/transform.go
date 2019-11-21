@@ -23,7 +23,6 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 		}
 
 		reqAmount, _ := strconv.ParseFloat(request.Amount, 64)
-
 		if request.Currency == "btc" {
 			amount = math.Round(reqAmount*rate*100) / 100
 		} else {
@@ -46,7 +45,6 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 		}
 
 		reqAmount, _ := strconv.ParseFloat(request.Amount, 64)
-
 		if request.Currency == "btc" {
 			amount = math.Round(reqAmount*rate*100) / 100
 		} else {
@@ -99,7 +97,6 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 		}
 
 		reqAmount, _ := strconv.ParseFloat(request.Amount, 64)
-
 		if request.Currency == "btc" {
 			amount = math.Round(reqAmount*rate*100) / 100
 		} else {
@@ -148,6 +145,47 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Amount:   amount,
 			Link:     "https://bitrush.nl/nl?r=bitdeal",
 			Reviews:  7,
+			Stars:    4,
+		}
+
+	case *models.KnakenBuy:
+		reqAmount, _ := strconv.ParseFloat(request.Amount, 64)
+		respAmount, _ := strconv.ParseFloat(exchangeData.Price, 64)
+
+		if request.Currency == "btc" {
+			rate = respAmount / reqAmount
+			amount = math.Round(respAmount*100) / 100
+		} else {
+			rate = reqAmount / respAmount
+			amount = respAmount
+		}
+
+		return models.ExchangeRate{
+			Exchange: "Knaken",
+			Rate:     math.Round(rate*100) / 100,
+			Amount:   amount,
+			Link:     "knaken.eu/?ref=5da47c2e7823c",
+			Reviews:  12,
+			Stars:    4,
+		}
+	case *models.KnakenSell:
+		reqAmount, _ := strconv.ParseFloat(request.Amount, 64)
+		respRate, _ := strconv.ParseFloat(exchangeData.BTC.SellPrice, 64)
+
+		if request.Currency == "btc" {
+			rate = respRate
+			amount = math.Round(respRate*reqAmount*100) / 100
+		} else {
+			rate = respRate
+			amount = math.Round(reqAmount/respRate*100000000) / 100000000
+		}
+
+		return models.ExchangeRate{
+			Exchange: "Knaken",
+			Rate:     math.Round(rate*100) / 100,
+			Amount:   amount,
+			Link:     "knaken.eu/?ref=5da47c2e7823c",
+			Reviews:  12,
 			Stars:    4,
 		}
 	}

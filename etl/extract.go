@@ -101,6 +101,30 @@ var Exchanges = []models.Exchange{
 		Currency: "btc",
 		Endpoint: "v1/products/EUR-XBT/bid?currency=XBT&amount=",
 	},
+	{
+		Name:     "KnakenBuy",
+		URL:      "https://knaken.eu/",
+		Method:   "GET",
+		Type:     "buy",
+		Currency: "eur",
+		Endpoint: "api/price/calculate-buy-price-cryptocurrency/BTC/",
+	},
+	{
+		Name:     "KnakenBuy",
+		URL:      "https://knaken.eu/",
+		Method:   "GET",
+		Type:     "buy",
+		Currency: "btc",
+		Endpoint: "api/price/calculate-buy-price-eur/BTC/",
+	},
+	{
+		Name:     "KnakenSell",
+		URL:      "https://knaken.eu/",
+		Method:   "GET",
+		Type:     "sell",
+		Currency: "both",
+		Endpoint: "api/get-prices",
+	},
 }
 
 func structSelector(body []byte, s interface{}) (interface{}, error) {
@@ -127,6 +151,10 @@ func toJSON(body []byte, exchange models.Exchange) (interface{}, error) {
 		return structSelector(body, new(models.BitrushBuy))
 	case "BitrushSell":
 		return structSelector(body, new(models.BitrushSell))
+	case "KnakenBuy":
+		return structSelector(body, new(models.KnakenBuy))
+	case "KnakenSell":
+		return structSelector(body, new(models.KnakenSell))
 	}
 
 	return nil, nil
@@ -157,6 +185,12 @@ func fetchPrices(request models.GetPricesData, exchange models.Exchange, dataCha
 		break
 	case "BitrushSell":
 		resp, err = http.Get(exchange.URL + exchange.Endpoint + request.Amount)
+		break
+	case "KnakenBuy":
+		resp, err = http.Get(exchange.URL + exchange.Endpoint + request.Amount + "/N/N/0")
+		break
+	case "KnakenSell":
+		resp, err = http.Get(exchange.URL + exchange.Endpoint)
 		break
 	}
 
