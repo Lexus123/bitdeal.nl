@@ -14,7 +14,7 @@
 				<div class="amount__section">
 					<div class="amount__input amount__input--euro">
 						<label for="eur">€</label>
-						<input id="eur" name="eur" value="420.00" type="number" />
+						<input id="eur" name="eur" value="420.00" type="number" step="0.01" />
 					</div>
 					<div class="asset">
 						Euro
@@ -28,7 +28,8 @@
 				<div class="amount__section">
 					<div class="amount__input amount__input--btc">
 						<label for="btc">₿</label>
-						<input id="btc" name="btc" value={{.ExchangePrices.BestAmount}} type="number" />
+						<input id="btc" name="btc" value={{.ExchangePrices.BestAmount}} type="number"
+							step="0.00000001" />
 					</div>
 					<div class="asset">
 						Btc

@@ -16,20 +16,28 @@ section {
 
 input {
 	border: 0;
-	/* color: #7E7E7E; */
+	width: 90%;
 	color: #595959;
 	height: 100%;
 	font-size: 28px;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-	-webkit-appearance: none;
-	margin: 0;
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
 }
 
 input:focus {
 	outline: none;
+}
+
+input:invalid {
+	box-shadow: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -340,6 +348,7 @@ nav {
 	font-weight: bold;
 	padding: 4px 6px;
 	width: fit-content;
+	width: -moz-fit-content;
 }
 
 .desc__pill--deal {

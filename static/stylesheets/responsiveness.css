@@ -177,6 +177,8 @@
 	.header-left {
 		grid-template-rows: 0;
 		padding-bottom: 120px;
+		padding-left: 1rem;
+		padding-top: 1rem;
 	}
 
 	.header-right {
