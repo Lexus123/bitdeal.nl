@@ -110,7 +110,7 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Exchange: "Btcdirect",
 			Rate:     math.Round(rate*100) / 100,
 			Amount:   amount,
-			Link:     "https://btcdirect.eu",
+			Link:     "https://btcdirect.eu/nl-nl?partnerId=319",
 			Reviews:  5485,
 			Stars:    5,
 		}
