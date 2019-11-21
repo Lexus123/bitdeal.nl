@@ -128,7 +128,7 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Exchange: "Bitrush",
 			Rate:     math.Round(rate*100) / 100,
 			Amount:   amount,
-			Link:     "https://bitrush.nl",
+			Link:     "https://bitrush.nl/nl?r=bitdeal",
 			Reviews:  7,
 			Stars:    4,
 		}
@@ -146,7 +146,7 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Exchange: "Bitrush",
 			Rate:     math.Round(rate*100) / 100,
 			Amount:   amount,
-			Link:     "https://bitrush.nl",
+			Link:     "https://bitrush.nl/nl?r=bitdeal",
 			Reviews:  7,
 			Stars:    4,
 		}
