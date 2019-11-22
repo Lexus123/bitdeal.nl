@@ -48,8 +48,10 @@ func GetPrices(w http.ResponseWriter, r *http.Request) {
 		select {
 		case res := <-dataChannel:
 			getPricesResponse.ExchangeRates = append(getPricesResponse.ExchangeRates, etl.Transform(message, res))
-		case <-time.After(250 * time.Millisecond):
-			getPricesResponse.ExchangeRates = append(getPricesResponse.ExchangeRates, etl.Transform(message, models.Exchange{}))
+		case <-time.After(100 * time.Millisecond):
+			getPricesResponse.ExchangeRates = append(getPricesResponse.ExchangeRates, etl.Transform(message, models.GetPricesError{
+				Exchange: "Naam",
+			}))
 		}
 	}
 

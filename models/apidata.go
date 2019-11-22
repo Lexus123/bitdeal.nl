@@ -55,6 +55,13 @@ const (
 )
 
 /*
+GetPricesError ...
+*/
+type GetPricesError struct {
+	Exchange string `json:"exchange"`
+}
+
+/*
 Bitvavo ... GET https://api.bitvavo.com/v2/BTC-EUR/book
 */
 type Bitvavo struct {
