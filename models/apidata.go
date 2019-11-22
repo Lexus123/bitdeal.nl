@@ -38,7 +38,21 @@ type ExchangeRate struct {
 	Link     string  `json:"link"`
 	Reviews  int     `json:"reviews"`
 	Stars    int     `json:"stars"`
+	Status   Status  `json:"status"`
 }
+
+/*
+Status ...
+*/
+type Status int
+
+const (
+	// OK ...
+	OK Status = 200
+
+	// RequestTimeout ...
+	RequestTimeout Status = 408
+)
 
 /*
 Bitvavo ... GET https://api.bitvavo.com/v2/BTC-EUR/book
@@ -73,78 +87,6 @@ type Satos struct {
 			BidRateCash float64 `json:"bid_rate_cash"`
 			UpdatedAt   int     `json:"updated_at"`
 		} `json:"btc"`
-		Eth struct {
-			Rateid      int     `json:"rateid"`
-			AskPrice    float64 `json:"ask_price"`
-			AskVolume   float64 `json:"ask_volume"`
-			AskCoin     float64 `json:"ask_coin"`
-			AskEurBank  float64 `json:"ask_eur_bank"`
-			AskEurCash  float64 `json:"ask_eur_cash"`
-			AskRateBank float64 `json:"ask_rate_bank"`
-			AskRateCash float64 `json:"ask_rate_cash"`
-			BidPrice    int     `json:"bid_price"`
-			BidVolume   float64 `json:"bid_volume"`
-			BidCoin     float64 `json:"bid_coin"`
-			BidEurBank  float64 `json:"bid_eur_bank"`
-			BidEurCash  float64 `json:"bid_eur_cash"`
-			BidRateBank float64 `json:"bid_rate_bank"`
-			BidRateCash float64 `json:"bid_rate_cash"`
-			UpdatedAt   int     `json:"updated_at"`
-		} `json:"eth"`
-		Xrp struct {
-			Rateid      int     `json:"rateid"`
-			AskPrice    float64 `json:"ask_price"`
-			AskVolume   float64 `json:"ask_volume"`
-			AskCoin     float64 `json:"ask_coin"`
-			AskEurBank  float64 `json:"ask_eur_bank"`
-			AskEurCash  float64 `json:"ask_eur_cash"`
-			AskRateBank float64 `json:"ask_rate_bank"`
-			AskRateCash float64 `json:"ask_rate_cash"`
-			BidPrice    float64 `json:"bid_price"`
-			BidVolume   float64 `json:"bid_volume"`
-			BidCoin     float64 `json:"bid_coin"`
-			BidEurBank  float64 `json:"bid_eur_bank"`
-			BidEurCash  float64 `json:"bid_eur_cash"`
-			BidRateBank float64 `json:"bid_rate_bank"`
-			BidRateCash float64 `json:"bid_rate_cash"`
-			UpdatedAt   int     `json:"updated_at"`
-		} `json:"xrp"`
-		Bch struct {
-			Rateid      int     `json:"rateid"`
-			AskPrice    float64 `json:"ask_price"`
-			AskVolume   float64 `json:"ask_volume"`
-			AskCoin     float64 `json:"ask_coin"`
-			AskEurBank  float64 `json:"ask_eur_bank"`
-			AskEurCash  float64 `json:"ask_eur_cash"`
-			AskRateBank float64 `json:"ask_rate_bank"`
-			AskRateCash float64 `json:"ask_rate_cash"`
-			BidPrice    float64 `json:"bid_price"`
-			BidVolume   float64 `json:"bid_volume"`
-			BidCoin     float64 `json:"bid_coin"`
-			BidEurBank  float64 `json:"bid_eur_bank"`
-			BidEurCash  float64 `json:"bid_eur_cash"`
-			BidRateBank float64 `json:"bid_rate_bank"`
-			BidRateCash float64 `json:"bid_rate_cash"`
-			UpdatedAt   int     `json:"updated_at"`
-		} `json:"bch"`
-		Ltc struct {
-			Rateid      int     `json:"rateid"`
-			AskPrice    float64 `json:"ask_price"`
-			AskVolume   float64 `json:"ask_volume"`
-			AskCoin     float64 `json:"ask_coin"`
-			AskEurBank  float64 `json:"ask_eur_bank"`
-			AskEurCash  float64 `json:"ask_eur_cash"`
-			AskRateBank float64 `json:"ask_rate_bank"`
-			AskRateCash float64 `json:"ask_rate_cash"`
-			BidPrice    float64 `json:"bid_price"`
-			BidVolume   float64 `json:"bid_volume"`
-			BidCoin     float64 `json:"bid_coin"`
-			BidEurBank  float64 `json:"bid_eur_bank"`
-			BidEurCash  float64 `json:"bid_eur_cash"`
-			BidRateBank float64 `json:"bid_rate_bank"`
-			BidRateCash float64 `json:"bid_rate_cash"`
-			UpdatedAt   int     `json:"updated_at"`
-		} `json:"ltc"`
 	} `json:"data"`
 }
 
@@ -153,38 +95,6 @@ Bitmymoney ... GET https://www.bitmymoney.com/market/
 */
 type Bitmymoney struct {
 	Markets struct {
-		LTC struct {
-			DailyChange string `json:"daily_change"`
-			BuyPrice    string `json:"buy_price"`
-			SellPrice   string `json:"sell_price"`
-			MidPrice    string `json:"mid_price"`
-			Balance     struct {
-				LTC struct {
-					Highest string `json:"highest"`
-					Total   string `json:"total"`
-				} `json:"LTC"`
-				EUR struct {
-					Highest string `json:"highest"`
-					Total   string `json:"total"`
-				} `json:"EUR"`
-			} `json:"balance"`
-		} `json:"LTC"`
-		ETH struct {
-			DailyChange string `json:"daily_change"`
-			BuyPrice    string `json:"buy_price"`
-			SellPrice   string `json:"sell_price"`
-			MidPrice    string `json:"mid_price"`
-			Balance     struct {
-				ETH struct {
-					Highest string `json:"highest"`
-					Total   string `json:"total"`
-				} `json:"ETH"`
-				EUR struct {
-					Highest string `json:"highest"`
-					Total   string `json:"total"`
-				} `json:"EUR"`
-			} `json:"balance"`
-		} `json:"ETH"`
 		BTC struct {
 			DailyChange string `json:"daily_change"`
 			BuyPrice    string `json:"buy_price"`
@@ -203,28 +113,6 @@ type Bitmymoney struct {
 		} `json:"BTC"`
 	} `json:"markets"`
 	CurrencyInfo struct {
-		LTC struct {
-			IconAlt         string `json:"icon-alt"`
-			Name            string `json:"name"`
-			PriceDataMerged string `json:"price_data_merged"`
-			Sign            string `json:"sign"`
-			PriceData       string `json:"price_data"`
-			DisplayDecimals int    `json:"display_decimals"`
-			Decimals        int    `json:"decimals"`
-			EventData       string `json:"event_data"`
-			Icon            string `json:"icon"`
-		} `json:"LTC"`
-		ETH struct {
-			IconAlt         string `json:"icon-alt"`
-			Name            string `json:"name"`
-			PriceDataMerged string `json:"price_data_merged"`
-			Sign            string `json:"sign"`
-			PriceData       string `json:"price_data"`
-			DisplayDecimals int    `json:"display_decimals"`
-			Decimals        int    `json:"decimals"`
-			EventData       string `json:"event_data"`
-			Icon            string `json:"icon"`
-		} `json:"ETH"`
 		BTC struct {
 			IconAlt         string `json:"icon-alt"`
 			Name            string `json:"name"`

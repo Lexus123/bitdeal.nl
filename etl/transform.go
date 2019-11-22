@@ -164,7 +164,7 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Exchange: "Knaken",
 			Rate:     math.Round(rate*100) / 100,
 			Amount:   amount,
-			Link:     "knaken.eu/?ref=5da47c2e7823c",
+			Link:     "https://knaken.eu/?ref=5da47c2e7823c",
 			Reviews:  12,
 			Stars:    4,
 		}
@@ -184,7 +184,7 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Exchange: "Knaken",
 			Rate:     math.Round(rate*100) / 100,
 			Amount:   amount,
-			Link:     "knaken.eu/?ref=5da47c2e7823c",
+			Link:     "https://knaken.eu/?ref=5da47c2e7823c",
 			Reviews:  12,
 			Stars:    4,
 		}
