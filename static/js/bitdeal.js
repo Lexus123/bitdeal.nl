@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 			calculatorState = "buy";
 
 			getEurPrices();
-			// this.getEurPrices();
 		}
 	});
 
@@ -37,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 			calculatorState = "sell";
 
 			getBtcPrices();
-			// this.getBtcPrices();
 		}
 	});
 
