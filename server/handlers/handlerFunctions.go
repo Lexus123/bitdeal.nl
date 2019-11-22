@@ -14,6 +14,12 @@ func addTemplate(template string) []string {
 	return templates
 }
 
+func addExtraTemplate(alreadyAdded []string, template string) []string {
+	var templates []string
+	templates = append([]string{template}, alreadyAdded...)
+	return templates
+}
+
 func checkCookie(r *http.Request) bool {
 	if cookie, err := r.Cookie("website"); err == nil {
 		value := make(map[string]string)

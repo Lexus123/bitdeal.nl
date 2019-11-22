@@ -84,6 +84,7 @@ nav {
 	font-family: 'Playfair Display', serif;
 	font-weight: 700;
 	color: #5C5849;
+	text-decoration: none;
 }
 
 .nav-item::after {

@@ -52,6 +52,7 @@ func GetHomePage(w http.ResponseWriter, r *http.Request) {
 	var templatesProduction []string
 
 	templates := addTemplate("templates/pages/homepage.html")
+	templates = addExtraTemplate(templates, "templates/components/bitdeal.html")
 
 	// Set the file name of the configurations file
 	viper.SetConfigName("config")
@@ -80,6 +81,33 @@ func GetHomePage(w http.ResponseWriter, r *http.Request) {
 	data := models.HomepageData{
 		Title:          "Homepage",
 		ExchangePrices: exchangePrices,
+	}
+	tmpl.ExecuteTemplate(w, "layout", data)
+}
+
+/*
+GetStatsPage ...
+*/
+func GetStatsPage(w http.ResponseWriter, r *http.Request) {
+	var funcMap = template.FuncMap{}
+
+	var tmpl *template.Template
+	var templatesProduction []string
+
+	templates := addTemplate("templates/pages/stats.html")
+
+	if viper.GetString("environment") == "production" {
+		for s := range templates {
+			templatesProduction = append(templatesProduction, "/var/www/bitdeal.nl/"+templates[s])
+		}
+		tmpl = template.Must(template.New("stats.html").Funcs(funcMap).ParseFiles(templatesProduction...))
+	} else {
+		tmpl = template.Must(template.New("stats.html").Funcs(funcMap).ParseFiles(templates...))
+	}
+
+	data := models.StatsData{
+		Title: "Stats",
+		// Stats: stats,
 	}
 	tmpl.ExecuteTemplate(w, "layout", data)
 }

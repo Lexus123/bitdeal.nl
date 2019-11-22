@@ -15,4 +15,10 @@ var GetRoutes = models.Routes{
 		Pattern:     "/",
 		HandlerFunc: handlers.GetHomePage,
 	},
+	models.Route{
+		Name:        "GetStatsPage",
+		Method:      "GET",
+		Pattern:     "/stats",
+		HandlerFunc: handlers.GetStatsPage,
+	},
 }

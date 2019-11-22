@@ -19,7 +19,6 @@ var (
 		"templates/components/homepageheaderleft.html",
 		"templates/components/homepageheader.html",
 		"templates/components/homepagenav.html",
-		"templates/components/bitdeal.html",
 		"templates/components/footer.html",
 		"templates/layouts/base.html",
 	}
