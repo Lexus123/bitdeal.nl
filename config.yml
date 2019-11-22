@@ -2,9 +2,10 @@ server:
     port: 8003
 
 database:
-    dbname: 
-    dbuser: "dbuser"
-    dbpassword: "dbpassword"
+    dbport: 3306
+    dbname: "bitdeal"
+    dbuser: "root"
+    dbpassword: "Opperkluizrrftjajacijfer556"
 
 environment: "local"
 # environment: "production"

@@ -5,7 +5,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"sort"
-	"time"
 
 	"bitdeal.nl/etl"
 	"bitdeal.nl/models"
@@ -44,15 +43,15 @@ func GetPrices(w http.ResponseWriter, r *http.Request) {
 
 	// For each exchange, transform the data and put it in the response
 	for i := 0; i < 6; i++ {
-		// getPricesResponse.ExchangeRates = append(getPricesResponse.ExchangeRates, etl.Transform(message, <-dataChannel))
-		select {
-		case res := <-dataChannel:
-			getPricesResponse.ExchangeRates = append(getPricesResponse.ExchangeRates, etl.Transform(message, res))
-		case <-time.After(1000 * time.Millisecond):
-			getPricesResponse.ExchangeRates = append(getPricesResponse.ExchangeRates, etl.Transform(message, models.GetPricesError{
-				Exchange: "Naam",
-			}))
-		}
+		getPricesResponse.ExchangeRates = append(getPricesResponse.ExchangeRates, etl.Transform(message, <-dataChannel))
+		// select {
+		// case res := <-dataChannel:
+		// 	getPricesResponse.ExchangeRates = append(getPricesResponse.ExchangeRates, etl.Transform(message, res))
+		// case <-time.After(1000 * time.Millisecond):
+		// 	getPricesResponse.ExchangeRates = append(getPricesResponse.ExchangeRates, etl.Transform(message, models.GetPricesError{
+		// 		Exchange: "Naam",
+		// 	}))
+		// }
 	}
 
 	type Exchange struct {

@@ -4,6 +4,8 @@ import (
 	"log"
 	"net/http"
 	"time"
+
+	"bitdeal.nl/database"
 )
 
 /*
@@ -15,12 +17,18 @@ func Logger(inner http.Handler, name string) http.Handler {
 
 		inner.ServeHTTP(w, r)
 
+		requestTime := time.Since(start).Milliseconds()
+
+		if r.Method == "POST" && r.RequestURI == "/api/getprices" {
+			database.SaveResponseTime(requestTime)
+		}
+
 		log.Printf(
-			"%s\t%s\t%s\t%s",
+			"%s\t%s\t%s\t%d",
 			r.Method,
 			r.RequestURI,
 			name,
-			time.Since(start),
+			requestTime,
 		)
 	})
 }
