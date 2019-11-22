@@ -4,12 +4,11 @@ import (
 	"log"
 	"net/http"
 	"time"
-
 	// "bitdeal.nl/database"
 )
 
 /*
-Logger logs everything the server does to the console.
+Logger logs  everything the server does to the console.
 */
 func Logger(inner http.Handler, name string) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
