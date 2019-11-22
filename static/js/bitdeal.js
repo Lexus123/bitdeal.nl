@@ -20,6 +20,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
 			more.innerHTML = "bitcoins";
 			less.innerHTML = "euro's";
 			calculatorState = "buy";
+
+			getEurPrices();
+			// this.getEurPrices();
 		}
 	});
 
@@ -32,6 +35,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
 			more.innerHTML = "euro's";
 			less.innerHTML = "bitcoins";
 			calculatorState = "sell";
+
+			getBtcPrices();
+			// this.getBtcPrices();
 		}
 	});
 
