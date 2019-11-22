@@ -2,7 +2,6 @@ package database
 
 import (
 	"database/sql"
-	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/spf13/viper"
@@ -12,22 +11,10 @@ import (
 SaveResponseTime ...
 */
 func SaveResponseTime(responseTime int64) {
-	fmt.Println("Go MySQL Tutorial")
-
-	// Set the file name of the configurations file
 	viper.SetConfigName("config")
-
-	// Set the path to look for the configurations file
 	viper.AddConfigPath(".")
-
-	// Enable VIPER to read Environment Variables
 	viper.AutomaticEnv()
-
 	viper.SetConfigType("yml")
-
-	if err := viper.ReadInConfig(); err != nil {
-		fmt.Printf("Error reading config file, %s", err)
-	}
 
 	dbname := viper.GetString("database.dbname")
 	dbuser := viper.GetString("database.dbuser")
@@ -40,6 +27,18 @@ func SaveResponseTime(responseTime int64) {
 	}
 
 	// defer the close till after the main function has finished
-	// executing
 	defer db.Close()
+
+	// perform a db.Query insert
+	insert, err := db.Prepare("INSERT INTO responsetimes(requesttime) VALUES(?)")
+
+	// if there is an error inserting, handle it
+	if err != nil {
+		panic(err.Error())
+	}
+
+	insert.Exec(responseTime)
+
+	// be careful deferring Queries if you are using transactions
+	defer insert.Close()
 }
