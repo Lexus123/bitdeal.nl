@@ -96,6 +96,21 @@ func GetStatsPage(w http.ResponseWriter, r *http.Request) {
 
 	templates := addTemplate("templates/pages/stats.html")
 
+	// Set the file name of the configurations file
+	viper.SetConfigName("config")
+
+	// Set the path to look for the configurations file
+	viper.AddConfigPath(".")
+
+	// Enable VIPER to read Environment Variables
+	viper.AutomaticEnv()
+
+	viper.SetConfigType("yml")
+
+	if err := viper.ReadInConfig(); err != nil {
+		fmt.Printf("Error reading config file, %s", err)
+	}
+
 	if viper.GetString("environment") == "production" {
 		for s := range templates {
 			templatesProduction = append(templatesProduction, "/var/www/bitdeal.nl/"+templates[s])

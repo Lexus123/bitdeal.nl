@@ -10,7 +10,7 @@ import (
 /*
 SaveResponseTime ...
 */
-func SaveResponseTime(responseTime int64) {
+func SaveResponseTime(responseTime, created int64) {
 	viper.SetConfigName("config")
 	viper.AddConfigPath(".")
 	viper.AutomaticEnv()
@@ -30,14 +30,14 @@ func SaveResponseTime(responseTime int64) {
 	defer db.Close()
 
 	// perform a db.Query insert
-	insert, err := db.Prepare("INSERT INTO responsetimes(requesttime) VALUES(?)")
+	insert, err := db.Prepare("INSERT INTO responsetimes(requesttime, created) VALUES(?,?)")
 
 	// if there is an error inserting, handle it
 	if err != nil {
 		panic(err.Error())
 	}
 
-	insert.Exec(responseTime)
+	insert.Exec(responseTime, created)
 
 	// be careful deferring Queries if you are using transactions
 	defer insert.Close()

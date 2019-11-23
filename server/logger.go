@@ -17,10 +17,11 @@ func Logger(inner http.Handler, name string) http.Handler {
 
 		inner.ServeHTTP(w, r)
 
+		created := start.Unix()
 		requestTime := time.Since(start).Milliseconds()
 
 		if r.Method == "POST" && r.RequestURI == "/api/getprices" {
-			database.SaveResponseTime(requestTime)
+			database.SaveResponseTime(requestTime, created)
 		}
 
 		log.Printf(
