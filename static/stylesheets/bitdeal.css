@@ -411,3 +411,7 @@ footer {
 	padding: 3rem;
 	background: #222;
 }
+
+.highcharts-credits {
+	display: none;
+}

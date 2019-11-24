@@ -32,19 +32,19 @@ function createChart(data) {
 
 		xAxis: [{
 			title: {
-				text: 'Data'
+				text: 'Data punt (#)'
 			},
-			alignTicks: false
+			alignTicks: true
 		}, {
 			title: {
-				text: 'Bell curve'
+				text: 'Response tijd (ms)'
 			},
-			alignTicks: false,
+			alignTicks: true,
 			opposite: true
 		}],
 
 		yAxis: [{
-			title: { text: 'Data' }
+			title: { text: 'Response tijd' }
 		}, {
 			title: { text: 'Bell curve' },
 			opposite: true
@@ -58,7 +58,7 @@ function createChart(data) {
 			baseSeries: 1,
 			zIndex: -1
 		}, {
-			name: 'Data',
+			name: 'Request',
 			type: 'scatter',
 			data: responses,
 			marker: {
