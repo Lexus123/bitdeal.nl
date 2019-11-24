@@ -2,15 +2,16 @@ package database
 
 import (
 	"database/sql"
+	"encoding/json"
+	"math"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/spf13/viper"
+
+	"bitdeal.nl/models"
 )
 
-/*
-SaveResponseTime ...
-*/
-func SaveResponseTime(responseTime, created int64) {
+func openDatabaseConnection() *sql.DB {
 	viper.SetConfigName("config")
 	viper.AddConfigPath(".")
 	viper.AutomaticEnv()
@@ -26,19 +27,66 @@ func SaveResponseTime(responseTime, created int64) {
 		panic(err.Error())
 	}
 
-	// defer the close till after the main function has finished
+	return db
+}
+
+/*
+SaveResponseTime ...
+*/
+func SaveResponseTime(responseTime, created int64) {
+	db := openDatabaseConnection()
 	defer db.Close()
 
-	// perform a db.Query insert
 	insert, err := db.Prepare("INSERT INTO responsetimes(requesttime, created) VALUES(?,?)")
 
-	// if there is an error inserting, handle it
 	if err != nil {
 		panic(err.Error())
 	}
 
 	insert.Exec(responseTime, created)
 
-	// be careful deferring Queries if you are using transactions
 	defer insert.Close()
+}
+
+/*
+GetStatistics ...
+*/
+func GetStatistics() []byte {
+	db := openDatabaseConnection()
+	defer db.Close()
+
+	var responsetimes models.Responsetimes
+
+	results, err := db.Query("SELECT * FROM responsetimes")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	for results.Next() {
+		var responsetime models.Responsetime
+		err = results.Scan(&responsetime.ID, &responsetime.Requesttime, &responsetime.Created)
+		if err != nil {
+			panic(err.Error())
+		}
+
+		responsetimes.Responsetimes = append(responsetimes.Responsetimes, responsetime)
+		responsetimes.Average += responsetime.Requesttime
+	}
+
+	responsetimes.Average = responsetimes.Average / int64(len(responsetimes.Responsetimes))
+
+	for index, response := range responsetimes.Responsetimes {
+		responsetimes.Responsetimes[index].Difference = math.Pow(float64(response.Requesttime-responsetimes.Average), 2)
+		responsetimes.Variance += responsetimes.Responsetimes[index].Difference
+	}
+
+	responsetimes.Variance = responsetimes.Variance / float64(len(responsetimes.Responsetimes))
+	responsetimes.Sigma = math.Sqrt(responsetimes.Variance)
+
+	output, err := json.Marshal(responsetimes)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	return output
 }

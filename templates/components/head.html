@@ -15,6 +15,14 @@
 
 	<link rel="shortcut icon" type="image/png" href="/static/favicons/favicon.ico" />
 
+	{{if eq .URL "/"}}
 	<script type="text/javascript" src="/static/js/bitdeal.js"></script>
+	{{end}}
+	{{if eq .URL "/stats"}}
+	<script type="text/javascript" src="/static/js/highcharts.js"></script>
+	<script type="text/javascript" src="/static/js/histogram-bellcurve.js"></script>
+	<script type="text/javascript" src="/static/js/stats.js"></script>
+	{{end}}
+
 </head>
 {{ end }}

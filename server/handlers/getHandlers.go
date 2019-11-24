@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	"bitdeal.nl/database"
 	"bitdeal.nl/models"
 
 	"github.com/spf13/viper"
@@ -81,7 +82,9 @@ func GetHomePage(w http.ResponseWriter, r *http.Request) {
 	data := models.HomepageData{
 		Title:          "Homepage",
 		ExchangePrices: exchangePrices,
+		URL:            r.RequestURI,
 	}
+
 	tmpl.ExecuteTemplate(w, "layout", data)
 }
 
@@ -123,8 +126,20 @@ func GetStatsPage(w http.ResponseWriter, r *http.Request) {
 	data := models.StatsData{
 		Title: "Stats",
 		// Stats: stats,
+		URL: r.RequestURI,
 	}
+
 	tmpl.ExecuteTemplate(w, "layout", data)
+}
+
+/*
+GetStats ...
+*/
+func GetStats(w http.ResponseWriter, r *http.Request) {
+	output := database.GetStatistics()
+
+	w.Header().Set("content-type", "application/json")
+	w.Write(output)
 }
 
 /*
