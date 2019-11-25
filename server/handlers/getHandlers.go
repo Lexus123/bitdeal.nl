@@ -136,9 +136,17 @@ GetStats ...
 */
 func GetStats(w http.ResponseWriter, r *http.Request) {
 	output := database.GetStatistics()
-
 	w.Header().Set("content-type", "application/json")
 	w.Write(output)
+}
+
+/*
+GetBitcoinPrices ...
+*/
+func GetBitcoinPrices(w http.ResponseWriter, r *http.Request) {
+	database.GetBitcoinPrices()
+	w.Header().Set("content-type", "application/json")
+	// w.Write(output)
 }
 
 /*

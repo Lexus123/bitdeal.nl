@@ -125,6 +125,14 @@ var Exchanges = []models.Exchange{
 		Currency: "both",
 		Endpoint: "api/get-prices",
 	},
+	// {
+	// 	Name:     "Coinmerce",
+	// 	URL:      "https://cmapi.nl/",
+	// 	Method:   "GET",
+	// 	Type:     "both",
+	// 	Currency: "both",
+	// 	Endpoint: "pricesall",
+	// },
 }
 
 func structSelector(body []byte, s interface{}) (interface{}, error) {
@@ -155,6 +163,8 @@ func toJSON(body []byte, exchange models.Exchange) (interface{}, error) {
 		return structSelector(body, new(models.KnakenBuy))
 	case "KnakenSell":
 		return structSelector(body, new(models.KnakenSell))
+	case "Coinmerce":
+		return structSelector(body, new(models.Coinmerce))
 	}
 
 	return nil, nil
@@ -190,6 +200,9 @@ func fetchPrices(request models.GetPricesData, exchange models.Exchange, dataCha
 		resp, err = http.Get(exchange.URL + exchange.Endpoint + request.Amount + "/N/N/0")
 		break
 	case "KnakenSell":
+		resp, err = http.Get(exchange.URL + exchange.Endpoint)
+		break
+	case "Coinmerce":
 		resp, err = http.Get(exchange.URL + exchange.Endpoint)
 		break
 	}

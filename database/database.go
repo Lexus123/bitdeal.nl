@@ -101,3 +101,10 @@ func GetStatistics() []byte {
 
 	return output
 }
+
+/*
+GetBitcoinPrices ...
+*/
+func GetBitcoinPrices() {
+	//
+}

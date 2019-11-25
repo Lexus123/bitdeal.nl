@@ -335,3 +335,17 @@ type BitrushSell struct {
 	Amount   float64 `json:"amount"`
 	Currency string  `json:"currency"`
 }
+
+/*
+Coinmerce ...
+*/
+type Coinmerce struct {
+	Status int `json:"status"`
+	Prices struct {
+		BTC struct {
+			Buy  string `json:"buy"`
+			Sell string `json:"sell"`
+		} `json:"BTC"`
+	} `json:"prices"`
+	Version int `json:"version"`
+}
