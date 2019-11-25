@@ -14,6 +14,5 @@ StatsData ...
 */
 type StatsData struct {
 	Title string
-	Stats interface{}
 	URL   string
 }

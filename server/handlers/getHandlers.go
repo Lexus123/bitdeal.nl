@@ -125,8 +125,7 @@ func GetStatsPage(w http.ResponseWriter, r *http.Request) {
 
 	data := models.StatsData{
 		Title: "Stats",
-		// Stats: stats,
-		URL: r.RequestURI,
+		URL:   r.RequestURI,
 	}
 
 	tmpl.ExecuteTemplate(w, "layout", data)

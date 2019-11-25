@@ -1,5 +1,7 @@
 @media all and (min-width: 1200px) {
-	
+	.bitdeals {
+		padding-right: 0;
+	}
 }
 
 @media all and (max-width: 1199px) {
