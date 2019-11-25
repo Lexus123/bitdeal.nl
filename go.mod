@@ -13,6 +13,9 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/spf13/viper v1.5.0
 	golang.org/x/crypto v0.0.0-20191029031824-8986dd9e96cf
+	golang.org/x/exp v0.0.0-20191030013958-a1ab85dbe136 // indirect
 	golang.org/x/sys v0.0.0-20191029155521-f43be2a4598c // indirect
 	golang.org/x/text v0.3.2 // indirect
+	golang.org/x/tools v0.0.0-20191125011157-cc15fab314e3 // indirect
+	gonum.org/v1/gonum v0.6.1
 )

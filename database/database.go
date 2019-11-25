@@ -7,6 +7,7 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/spf13/viper"
+	"gonum.org/v1/gonum/stat/distuv"
 
 	"bitdeal.nl/models"
 )
@@ -73,15 +74,25 @@ func GetStatistics() []byte {
 		responsetimes.Average += responsetime.Requesttime
 	}
 
-	responsetimes.Average = responsetimes.Average / int64(len(responsetimes.Responsetimes))
+	responsetimes.Count = int64(len(responsetimes.Responsetimes))
+	responsetimes.Average = responsetimes.Average / responsetimes.Count
 
 	for index, response := range responsetimes.Responsetimes {
 		responsetimes.Responsetimes[index].Difference = math.Pow(float64(response.Requesttime-responsetimes.Average), 2)
 		responsetimes.Variance += responsetimes.Responsetimes[index].Difference
 	}
 
-	responsetimes.Variance = responsetimes.Variance / float64(len(responsetimes.Responsetimes))
+	responsetimes.Variance = responsetimes.Variance / float64(responsetimes.Count)
 	responsetimes.Sigma = math.Sqrt(responsetimes.Variance)
+	normalDist := distuv.Normal{
+		Mu:    float64(responsetimes.Average),
+		Sigma: responsetimes.Sigma,
+	}
+
+	for index, response := range responsetimes.Responsetimes {
+		responsetimes.Responsetimes[index].Zscore = (float64(response.Requesttime) - float64(responsetimes.Average)) / responsetimes.Sigma
+		responsetimes.Responsetimes[index].CDF = normalDist.CDF(float64(responsetimes.Responsetimes[index].Requesttime))
+	}
 
 	output, err := json.Marshal(responsetimes)
 	if err != nil {

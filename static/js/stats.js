@@ -13,57 +13,84 @@ async function statsCall() {
 }
 
 function createChart(data) {
-	console.log(data);
+	var scatterData = [];
 
-	var responses = [];
-
-	data.responsetimes.forEach((response) => {
-		responses.push(response.requesttime);
+	data.responsetimes.forEach(response => {
+		var singleScatter = {
+			name: response.requesttime,
+			x: response.zscore,
+			y: response.cdf
+		};
+		scatterData.push(singleScatter);
 	})
 
-	var myChart = Highcharts.chart('container', {
-		title: {
-			text: '/api/getprices response tijd distributie'
-		},
-
+	Highcharts.chart('container', {
 		chart: {
+			type: 'scatter',
+			zoomType: 'xy',
 			backgroundColor: "rgba(0,0,0,0.0)",
 		},
-
-		xAxis: [{
+		accessibility: {
+			description: 'Response tijd van /api/getprices'
+		},
+		title: {
+			text: 'Response tijd van /api/getprices'
+		},
+		subtitle: {
+			text: 'Bron: /api/getprices response tijden'
+		},
+		xAxis: {
 			title: {
-				text: 'Data punt (#)'
+				enabled: true,
+				text: 'Standaard afwijkingen'
 			},
-			alignTicks: true
-		}, {
+			startOnTick: true,
+			endOnTick: true,
+			showLastLabel: true
+		},
+		yAxis: {
 			title: {
-				text: 'Response tijd (ms)'
-			},
-			alignTicks: true,
-			opposite: true
-		}],
-
-		yAxis: [{
-			title: { text: 'Response tijd' }
-		}, {
-			title: { text: 'Bell curve' },
-			opposite: true
-		}],
-
-		series: [{
-			name: 'Bell curve',
-			type: 'bellcurve',
-			xAxis: 1,
-			yAxis: 1,
-			baseSeries: 1,
-			zIndex: -1
-		}, {
-			name: 'Request',
-			type: 'scatter',
-			data: responses,
-			marker: {
-				radius: 1.5
+				text: 'Kans'
 			}
+		},
+		legend: {
+			layout: 'vertical',
+			align: 'left',
+			verticalAlign: 'top',
+			x: 100,
+			y: 70,
+			floating: true,
+			backgroundColor: Highcharts.defaultOptions.chart.backgroundColor,
+			borderWidth: 1
+		},
+		plotOptions: {
+			scatter: {
+				marker: {
+					radius: 5,
+					states: {
+						hover: {
+							enabled: true,
+							lineColor: 'rgb(100,100,100)'
+						}
+					}
+				},
+				states: {
+					hover: {
+						marker: {
+							enabled: false
+						}
+					}
+				},
+				tooltip: {
+					headerFormat: '<b>{point.key}ms</b><br>',
+					pointFormat: '{point.x} sigma afwijkingen<br>{point.y} kans'
+				}
+			}
+		},
+		series: [{
+			name: `Requests (${data.count} totaal)`,
+			color: 'rgba(223, 83, 83, .5)',
+			data: scatterData,
 		}]
 	});
 }
