@@ -12,12 +12,25 @@ async function statsCall() {
 	});
 }
 
+function timeConverter(UNIX_timestamp) {
+	var a = new Date(UNIX_timestamp * 1000);
+	var months = ['Jan', 'Feb', 'Maa', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'];
+	var year = a.getFullYear();
+	var month = months[a.getMonth()];
+	var date = a.getDate();
+	var hour = a.getHours();
+	var min = a.getMinutes();
+	var sec = a.getSeconds();
+	var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec;
+	return time;
+}
+
 function createChart(data) {
 	var scatterData = [];
 
 	data.responsetimes.forEach(response => {
 		var singleScatter = {
-			name: response.requesttime,
+			name: `${response.requesttime}ms om ${timeConverter(response.created)}`,
 			x: response.zscore,
 			y: response.cdf
 		};
@@ -82,7 +95,7 @@ function createChart(data) {
 					}
 				},
 				tooltip: {
-					headerFormat: '<b>{point.key}ms</b><br>',
+					headerFormat: `<b>{point.key}</b><br>`,
 					pointFormat: '{point.x} sigma afwijkingen<br>{point.y} kans'
 				}
 			}
