@@ -27,6 +27,7 @@ function timeConverter(UNIX_timestamp) {
 
 function createChart(data) {
 	var scatterData = [];
+	var mostRecentData = [];
 
 	data.responsetimes.forEach(response => {
 		var singleScatter = {
@@ -36,6 +37,8 @@ function createChart(data) {
 		};
 		scatterData.push(singleScatter);
 	})
+
+	mostRecentData.push(scatterData[scatterData.length - 1]);
 
 	Highcharts.chart('container', {
 		chart: {
@@ -57,8 +60,10 @@ function createChart(data) {
 				enabled: true,
 				text: 'Standaard afwijkingen'
 			},
-			startOnTick: true,
-			endOnTick: true,
+			startOnTick: false,
+			min: -1.5,
+			endOnTick: false,
+			max: 3,
 			showLastLabel: true
 		},
 		yAxis: {
@@ -104,6 +109,11 @@ function createChart(data) {
 			name: `Requests (${data.count} totaal)`,
 			color: 'rgba(223, 83, 83, .5)',
 			data: scatterData,
+		},
+		{
+			name: `Meest recente request`,
+			color: 'rgba(70, 200, 83, 1)',
+			data: mostRecentData,
 		}]
 	});
 }

@@ -137,9 +137,6 @@ var Exchanges = []models.Exchange{
 
 func structSelector(body []byte, s interface{}) (interface{}, error) {
 	err := json.Unmarshal(body, &s)
-	if err != nil {
-		fmt.Println(err)
-	}
 	return s, err
 }
 
@@ -173,6 +170,7 @@ func toJSON(body []byte, exchange models.Exchange) (interface{}, error) {
 func fetchPrices(request models.GetPricesData, exchange models.Exchange, dataChannel chan interface{}) {
 	var resp *http.Response
 	var err error
+	var s interface{}
 
 	switch exchange.Name {
 	case "Bitvavo":
@@ -213,10 +211,17 @@ func fetchPrices(request models.GetPricesData, exchange models.Exchange, dataCha
 
 	defer resp.Body.Close()
 
-	respData, err := ioutil.ReadAll(resp.Body)
-	s, err := toJSON([]byte(respData), exchange)
-	if err != nil {
-		fmt.Println(err)
+	if resp.StatusCode == 200 {
+		respData, err := ioutil.ReadAll(resp.Body)
+		s, err = toJSON([]byte(respData), exchange)
+		if err != nil {
+			fmt.Println(err)
+		}
+	} else {
+		s = models.GetPricesError{
+			Exchange: exchange.Name,
+			Error:    models.GeneralError,
+		}
 	}
 
 	dataChannel <- s

@@ -8,6 +8,15 @@ type Exchange struct {
 }
 
 /*
+ExchangeInfo ...
+*/
+type ExchangeInfo struct {
+	Name, Link     string
+	Reviews, Stars int
+	Broker         bool
+}
+
+/*
 GetPricesData ...
 */
 type GetPricesData struct {
@@ -48,11 +57,14 @@ Status ...
 type Status int
 
 const (
-	// OK ...
+	// OK means the broker/exchange replied with a status 200
 	OK Status = 200
 
-	// RequestTimeout ...
+	// RequestTimeout means bitdeal cutoff the request (after 500ms)
 	RequestTimeout Status = 408
+
+	// GeneralError means something went wrong
+	GeneralError Status = 777
 )
 
 /*
@@ -60,6 +72,7 @@ GetPricesError ...
 */
 type GetPricesError struct {
 	Exchange string `json:"exchange"`
+	Error    Status `json:"error"`
 }
 
 /*
