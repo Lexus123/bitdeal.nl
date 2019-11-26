@@ -79,9 +79,44 @@ document.addEventListener("DOMContentLoaded", function (event) {
 var MOBILE_WIDTH = 991;
 var calculatorState = "buy";
 var iOS = false;
+var checked = true;
 
 function iOScheck() {
 	iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+}
+
+function toggleSwitch() {
+	checked = !checked;
+	var exchanges = document.getElementsByClassName("exchange");
+	for (i = 0; i < exchanges.length; i++) {
+		checked ? exchanges[i].style.display = "grid" : exchanges[i].style.display = "none";
+	}
+
+	if (!checked) {
+		setNewBestDeal();
+	} else {
+		removeBestDeal();
+	}
+}
+
+function setNewBestDeal() {
+	var bitdeals = document.getElementsByClassName("bitdeal");
+	var first = true;
+	for (i = 0; i < bitdeals.length; i++) {
+		if (!bitdeals[i].classList.contains("exchange") && !bitdeals[i].classList.contains("bitdeal--heading") && first) {
+			var badge = bitdeals[i].children[1].children[0]
+			// badge.innerHTML = "Beste deal!";
+			// badge.classList.add("desc__pill--deal");
+			first = false;
+		}
+	}
+}
+
+function removeBestDeal() {
+	var bestDeals = document.getElementsByClassName("desc__pill--deal");
+
+	// bestDeals[1].innerHTML = "";
+	// bestDeals[1].classList.remove("desc__pill--deal");
 }
 
 function getCalculatorState() {

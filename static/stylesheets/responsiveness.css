@@ -17,6 +17,14 @@
 @media all and (max-width: 991px) {
 	/* Hier mobiel design toepassen  */
 
+	.calc-field__upper, .calc-field__lower, .calc-field__switch {
+		padding: 1rem;
+	}
+
+	.calc-field__switch {
+		padding-top: 0;
+	}
+
 	.bitdeal-badge--desktop {
 		display: none;
 	}
