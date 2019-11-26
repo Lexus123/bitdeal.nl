@@ -39,6 +39,7 @@ type ExchangeRate struct {
 	Reviews  int     `json:"reviews"`
 	Stars    int     `json:"stars"`
 	Status   Status  `json:"status"`
+	Broker   bool    `json:"broker"`
 }
 
 /*

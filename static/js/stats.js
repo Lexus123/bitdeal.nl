@@ -32,7 +32,7 @@ function createChart(data) {
 		var singleScatter = {
 			name: `${response.requesttime}ms om ${timeConverter(response.created)}`,
 			x: response.zscore,
-			y: response.cdf
+			y: parseInt((response.cdf * 100).toFixed())
 		};
 		scatterData.push(singleScatter);
 	})
@@ -96,7 +96,7 @@ function createChart(data) {
 				},
 				tooltip: {
 					headerFormat: `<b>{point.key}</b><br>`,
-					pointFormat: '{point.x} sigma afwijkingen<br>{point.y} kans'
+					pointFormat: '{point.x} sigma afwijkingen van het gemiddelde<br>{point.y} % van de requests is sneller'
 				}
 			}
 		},

@@ -36,6 +36,8 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Link:     "https://bitvavo.com/?a=C23D4F6D97",
 			Reviews:  1895,
 			Stars:    5,
+			Status:   models.OK,
+			Broker:   false,
 		}
 	case *models.Litebit:
 		if request.Type == "buy" {
@@ -58,6 +60,8 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Link:     "https://www.litebit.eu/?referrer=40203",
 			Reviews:  1695,
 			Stars:    5,
+			Status:   models.OK,
+			Broker:   true,
 		}
 	case *models.BitonicBuy:
 		if request.Currency == "btc" {
@@ -73,6 +77,8 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Link:     "https://bitonic.nl/?partner=777",
 			Reviews:  41,
 			Stars:    4,
+			Status:   models.OK,
+			Broker:   true,
 		}
 	case *models.BitonicSell:
 		if request.Currency == "btc" {
@@ -88,6 +94,8 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Link:     "https://bitonic.nl/?partner=777",
 			Reviews:  41,
 			Stars:    4,
+			Status:   models.OK,
+			Broker:   true,
 		}
 	case *models.Btcdirect:
 		if request.Type == "buy" {
@@ -110,6 +118,8 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Link:     "https://btcdirect.eu/nl-nl?partnerId=319",
 			Reviews:  5485,
 			Stars:    5,
+			Status:   models.OK,
+			Broker:   true,
 		}
 	case *models.BitrushBuy:
 		reqAmount, _ := strconv.ParseFloat(request.Amount, 64)
@@ -128,6 +138,8 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Link:     "https://bitrush.nl/nl?r=bitdeal",
 			Reviews:  7,
 			Stars:    4,
+			Status:   models.OK,
+			Broker:   true,
 		}
 	case *models.BitrushSell:
 		reqAmount, _ := strconv.ParseFloat(request.Amount, 64)
@@ -146,6 +158,8 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Link:     "https://bitrush.nl/nl?r=bitdeal",
 			Reviews:  7,
 			Stars:    4,
+			Status:   models.OK,
+			Broker:   true,
 		}
 
 	case *models.KnakenBuy:
@@ -167,6 +181,8 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Link:     "https://knaken.eu/?ref=5da47c2e7823c",
 			Reviews:  12,
 			Stars:    4,
+			Status:   models.OK,
+			Broker:   true,
 		}
 	case *models.KnakenSell:
 		reqAmount, _ := strconv.ParseFloat(request.Amount, 64)
@@ -187,6 +203,8 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Link:     "https://knaken.eu/?ref=5da47c2e7823c",
 			Reviews:  12,
 			Stars:    4,
+			Status:   models.OK,
+			Broker:   true,
 		}
 	case *models.Coinmerce:
 		var respRate float64
@@ -213,6 +231,8 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Link:     "https://coinmerce.io/r/9WZT8VCHMo",
 			Reviews:  107,
 			Stars:    5,
+			Status:   models.OK,
+			Broker:   true,
 		}
 	}
 

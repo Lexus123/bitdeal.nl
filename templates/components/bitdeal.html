@@ -1,5 +1,6 @@
 {{ define "bitdeal" }}
-<div class="bitdeal" id={{.Exchange.Exchange}}>
+<div {{if (eq .Exchange.Broker false)}} class="bitdeal exchange" {{end}} {{if (eq .Exchange.Broker true)}}
+	class="bitdeal" {{end}} id={{.Exchange.Exchange}}>
 	<div class="bitdeal-company">
 		<p class="deal__desc desc__company">{{ .Exchange.Exchange }}</p>
 		<p class="company-reviews">★★★★★</p>

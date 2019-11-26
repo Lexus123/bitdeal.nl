@@ -31,6 +31,10 @@ func openDatabaseConnection() *sql.DB {
 	return db
 }
 
+func toFixed(value float64) float64 {
+	return math.Round(value*100) / 100
+}
+
 /*
 SaveResponseTime ...
 */
@@ -90,8 +94,8 @@ func GetStatistics() []byte {
 	}
 
 	for index, response := range responsetimes.Responsetimes {
-		responsetimes.Responsetimes[index].Zscore = (float64(response.Requesttime) - float64(responsetimes.Average)) / responsetimes.Sigma
-		responsetimes.Responsetimes[index].CDF = normalDist.CDF(float64(responsetimes.Responsetimes[index].Requesttime))
+		responsetimes.Responsetimes[index].Zscore = toFixed((float64(response.Requesttime) - float64(responsetimes.Average)) / responsetimes.Sigma)
+		responsetimes.Responsetimes[index].CDF = toFixed(normalDist.CDF(float64(responsetimes.Responsetimes[index].Requesttime)))
 	}
 
 	output, err := json.Marshal(responsetimes)
