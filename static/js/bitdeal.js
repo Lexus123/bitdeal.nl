@@ -72,10 +72,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
 			};
 		}
 	}
+
+	iOScheck()
 });
 
 var MOBILE_WIDTH = 991;
 var calculatorState = "buy";
+var iOS = false;
+
+function iOScheck() {
+	iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+}
 
 function getCalculatorState() {
 	return calculatorState;
@@ -188,7 +195,7 @@ function applyNewPrices(priceData) {
 		// Amount update
 		var bitdealAmount = bitdealChildren[3].children[0];
 		if (priceData.currency === "eur") {
-			bitdealAmount.innerHTML = "₿ " + priceData.exchangerates[exchangeIndex].amount;
+			bitdealAmount.innerHTML = iOS ? "B " + priceData.exchangerates[exchangeIndex].amount : "₿ " + priceData.exchangerates[exchangeIndex].amount;
 		} else {
 			bitdealAmount.innerHTML = "€ " + priceData.exchangerates[exchangeIndex].amount;
 		}

@@ -28,8 +28,9 @@
 	</div>
 	{{$bestrate := .ExchangePrices.BestRate}}
 	{{$mostreviews := .ExchangePrices.MostReviews}}
+	{{$iphone := .Iphone}}
 	{{range .ExchangePrices.ExchangeRates}}
-	{{template "bitdeal" (wrap . $bestrate $mostreviews)}}
+	{{template "bitdeal" (wrap . $bestrate $mostreviews $iphone)}}
 	{{end}}
 </main>
 {{end}}

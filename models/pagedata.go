@@ -5,6 +5,7 @@ HomepageData ...
 */
 type HomepageData struct {
 	Title          string
+	Iphone         bool
 	ExchangePrices GetPricesResponse
 	URL            string
 }

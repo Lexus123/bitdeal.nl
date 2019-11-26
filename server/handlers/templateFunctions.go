@@ -6,11 +6,12 @@ import (
 	"bitdeal.nl/models"
 )
 
-func wrap(exchangeRate models.ExchangeRate, bestRate float64, mostReviews int) map[string]interface{} {
+func wrap(exchangeRate models.ExchangeRate, bestRate float64, mostReviews int, iphone bool) map[string]interface{} {
 	return map[string]interface{}{
 		"Exchange":    exchangeRate,
 		"BestRate":    bestRate,
 		"MostReviews": mostReviews,
+		"Iphone":      iphone,
 	}
 }
 

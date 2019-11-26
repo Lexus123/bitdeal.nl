@@ -6,7 +6,9 @@ import (
 	"fmt"
 	"html/template"
 	"io/ioutil"
+	"log"
 	"net/http"
+	"strings"
 
 	"bitdeal.nl/database"
 	"bitdeal.nl/models"
@@ -18,6 +20,11 @@ import (
 GetHomePage ...
 */
 func GetHomePage(w http.ResponseWriter, r *http.Request) {
+	var isIphone = strings.Contains(r.Header.Get("User-Agent"), "iPhone")
+
+	log.Printf(r.Header.Get("User-Agent"))
+	log.Printf("%v", isIphone)
+
 	requestBody, err := json.Marshal(models.GetPricesData{
 		Type:     "buy",
 		Currency: "eur",
@@ -82,6 +89,7 @@ func GetHomePage(w http.ResponseWriter, r *http.Request) {
 	data := models.HomepageData{
 		Title:          "Homepage",
 		ExchangePrices: exchangePrices,
+		Iphone:         isIphone,
 		URL:            r.RequestURI,
 	}
 
