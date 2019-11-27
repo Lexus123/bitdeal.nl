@@ -133,6 +133,14 @@ var Exchanges = []models.Exchange{
 	// 	Currency: "both",
 	// 	Endpoint: "pricesall",
 	// },
+	// {
+	// 	Name:     "Bitqist",
+	// 	URL:      "https://api.bitqist.com/",
+	// 	Method:   "GET",
+	// 	Type:     "both",
+	// 	Currency: "both",
+	// 	Endpoint: "v1/eur/prices/",
+	// },
 }
 
 func structSelector(body []byte, s interface{}) (interface{}, error) {
@@ -162,6 +170,8 @@ func toJSON(body []byte, exchange models.Exchange) (interface{}, error) {
 		return structSelector(body, new(models.KnakenSell))
 	case "Coinmerce":
 		return structSelector(body, new(models.Coinmerce))
+	case "Bitqist":
+		return structSelector(body, new(models.Bitqist))
 	}
 
 	return nil, nil
@@ -201,6 +211,9 @@ func fetchPrices(request models.GetPricesData, exchange models.Exchange, dataCha
 		resp, err = http.Get(exchange.URL + exchange.Endpoint)
 		break
 	case "Coinmerce":
+		resp, err = http.Get(exchange.URL + exchange.Endpoint)
+		break
+	case "Bitqist":
 		resp, err = http.Get(exchange.URL + exchange.Endpoint)
 		break
 	}

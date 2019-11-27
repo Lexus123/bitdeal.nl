@@ -92,11 +92,11 @@ function toggleSwitch() {
 		checked ? exchanges[i].style.display = "grid" : exchanges[i].style.display = "none";
 	}
 
-	if (!checked) {
-		setNewBestDeal();
-	} else {
-		removeBestDeal();
-	}
+	// if (!checked) {
+	// 	setNewBestDeal();
+	// } else {
+	// 	removeBestDeal();
+	// }
 }
 
 function setNewBestDeal() {
@@ -105,8 +105,8 @@ function setNewBestDeal() {
 	for (i = 0; i < bitdeals.length; i++) {
 		if (!bitdeals[i].classList.contains("exchange") && !bitdeals[i].classList.contains("bitdeal--heading") && first) {
 			var badge = bitdeals[i].children[1].children[0]
-			// badge.innerHTML = "Beste deal!";
-			// badge.classList.add("desc__pill--deal");
+			badge.innerHTML = "Beste deal!";
+			badge.classList.add("desc__pill--deal");
 			first = false;
 		}
 	}
@@ -114,9 +114,8 @@ function setNewBestDeal() {
 
 function removeBestDeal() {
 	var bestDeals = document.getElementsByClassName("desc__pill--deal");
-
-	// bestDeals[1].innerHTML = "";
-	// bestDeals[1].classList.remove("desc__pill--deal");
+	bestDeals[1].innerHTML = "";
+	bestDeals[1].classList.remove("desc__pill--deal");
 }
 
 function getCalculatorState() {

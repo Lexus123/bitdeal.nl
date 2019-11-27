@@ -1,4 +1,3 @@
-
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body {
@@ -12,6 +11,11 @@ header, main {
 
 section {
 	padding: 3rem;
+}
+
+footer {
+	padding: 3rem;
+	background: #222;
 }
 
 input {
@@ -413,11 +417,6 @@ nav {
 
 .arrow {
 	display: none;
-}
-
-footer {
-	padding: 3rem;
-	background: #222;
 }
 
 .highcharts-credits {

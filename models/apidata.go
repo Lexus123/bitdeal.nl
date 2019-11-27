@@ -363,3 +363,20 @@ type Coinmerce struct {
 	} `json:"prices"`
 	Version int `json:"version"`
 }
+
+/*
+Bitqist ...
+*/
+type Bitqist []struct {
+	BaseCurrency  int         `json:"base_currency"`
+	QuoteCurrency int         `json:"quote_currency"`
+	Time          interface{} `json:"time"`
+	VolumeBaseNow interface{} `json:"volume_base_now"`
+	AskNow        float64     `json:"ask_now"`
+	AskNowInclFee float64     `json:"ask_now_incl_fee"`
+	BidNow        float64     `json:"bid_now"`
+	BidNowInclFee float64     `json:"bid_now_incl_fee"`
+	Ask1H         interface{} `json:"ask_1h"`
+	Ask1D         interface{} `json:"ask_1d"`
+	Ask7D         interface{} `json:"ask_7d"`
+}
