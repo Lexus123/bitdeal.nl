@@ -1,7 +1,8 @@
 .homepage-content {
-	margin: 16px 16px 0 16px;
+	margin: 16px;
 	padding: 32px 56px;
 	background: #F0EDED;
+	background: #F2F0F0;
 	justify-content: center;
 	cursor: default;
 	border-radius: 12px;
@@ -31,11 +32,35 @@
 }
 
 .info-image {
-	width: 56px;
+	width: 60%;
 }
 
 .info-header, .info-text {
 	color: rgba(5, 5, 5, 0.85);
+	margin-bottom: 25px;
+}
+
+.info-header {
+	font-size: 2rem;
+}
+
+.info-text {
+	line-height: 28px;
+	letter-spacing: -0.07px;
+	/* text-align: justify;
+	text-justify: inter-word; */
+}
+
+.info-button {
+	width: fit-content;
+	padding: .3rem 1rem;
+	border: none;
+	font-size: 1rem;
+	font-weight: bold;
+	border-radius: 14px;
+	background: #B0E2F5;
+	border: 1px solid rgba(0, 18, 77, 0.2);
+	color: #002448;
 }
 
 .image-wrapper {
