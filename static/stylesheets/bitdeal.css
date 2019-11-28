@@ -244,7 +244,8 @@ nav {
 }
 
 .calc-field__upper {
-	border-bottom: 1px solid #DDD;
+	/* border-bottom: 1px solid #DDD; */
+	padding-bottom: 0;
 }
 
 .calc-field__buttons {
@@ -266,6 +267,8 @@ nav {
 	display: flex;
 	justify-content: space-between;
 	font-size: 28px;
+	padding-bottom: 1px;
+	border-bottom: 1px solid #DDD;
 }
 
 .label {

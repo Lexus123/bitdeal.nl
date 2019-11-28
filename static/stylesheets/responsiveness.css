@@ -21,6 +21,10 @@
 		padding: 1rem;
 	}
 
+	.calc-field__upper {
+		padding-bottom: 0.5rem;
+	}
+
 	.calc-field__switch {
 		padding-top: 0;
 	}
@@ -134,6 +138,14 @@
 }
 
 @media all and (max-width: 575px) {
+	.label {
+		margin-bottom: 5px;
+	}
+
+	.calc-field__upper {
+		padding-bottom: 0;
+	}
+
 	.amount__input > label, .amount__input > input, .asset {
 		font-size: 1.2rem;
 	}
