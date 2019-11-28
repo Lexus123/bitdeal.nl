@@ -66,3 +66,12 @@
 .image-wrapper {
 	width: 60%;
 }
+@media all and (max-width: 767px) {
+	.info-image, .info-wrapper {
+		width: 100%;
+	}
+
+	.info-image {
+		margin-top: 25px;
+	}
+}
