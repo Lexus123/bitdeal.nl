@@ -47,8 +47,6 @@
 .info-text {
 	line-height: 28px;
 	letter-spacing: -0.07px;
-	/* text-align: justify;
-	text-justify: inter-word; */
 }
 
 .info-button {
@@ -83,8 +81,12 @@
 		width: 100%;
 	}
 
+	.content-wrapper--reverse {
+		flex-direction: column-reverse;
+	}
+
 	.info-image {
-		margin-top: 25px;
+		margin-top: 55px;
 	}
 
 	.homepage-content {
