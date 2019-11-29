@@ -1,7 +1,7 @@
 .homepage-content {
 	margin: 16px;
 	padding: 32px 56px;
-	background: #F0EDED;
+	/* background: #F0EDED; FOR PHOTOSHOP */
 	background: #F2F0F0;
 	justify-content: center;
 	cursor: default;
@@ -53,14 +53,26 @@
 
 .info-button {
 	width: fit-content;
-	padding: .3rem 1rem;
+	padding: 0.5rem 1rem;
 	border: none;
 	font-size: 1rem;
 	font-weight: bold;
-	border-radius: 14px;
+	border-radius: 1.25rem;
 	background: #B0E2F5;
 	border: 1px solid rgba(0, 18, 77, 0.2);
 	color: #002448;
+	transition: all 200ms ease;
+	-webkit-box-shadow: 0px 3px 5px 0px rgba(0, 45, 88, 0.2);
+	-moz-box-shadow: 0px 3px 5px 0px rgba(0, 45, 88, 0.2);
+	box-shadow: 0px 3px 5px 0px rgba(0, 45, 88, 0.2);
+}
+
+.info-button:focus {
+	outline: none;
+}
+
+.info-button:hover {
+	background: #A0D2E5;
 }
 
 .image-wrapper {
@@ -73,5 +85,9 @@
 
 	.info-image {
 		margin-top: 25px;
+	}
+
+	.homepage-content {
+		padding: 32px;
 	}
 }
