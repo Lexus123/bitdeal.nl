@@ -58,6 +58,10 @@ func GetHomePage(w http.ResponseWriter, r *http.Request) {
 	var templatesProduction []string
 
 	templates := addTemplate("templates/pages/homepage.html")
+	templates = addExtraTemplate(templates, "templates/components/homepageheaderleft.html")
+	templates = addExtraTemplate(templates, "templates/components/homepageheaderright.html")
+	templates = addExtraTemplate(templates, "templates/components/homepageheader.html")
+	templates = addExtraTemplate(templates, "templates/components/homepagenav.html")
 	templates = addExtraTemplate(templates, "templates/components/bitdeal.html")
 
 	// Set the file name of the configurations file
@@ -104,6 +108,51 @@ func GetStatsPage(w http.ResponseWriter, r *http.Request) {
 	var templatesProduction []string
 
 	templates := addTemplate("templates/pages/stats.html")
+	templates = addExtraTemplate(templates, "templates/components/homepagenav.html")
+
+	// Set the file name of the configurations file
+	viper.SetConfigName("config")
+
+	// Set the path to look for the configurations file
+	viper.AddConfigPath(".")
+
+	// Enable VIPER to read Environment Variables
+	viper.AutomaticEnv()
+
+	viper.SetConfigType("yml")
+
+	if err := viper.ReadInConfig(); err != nil {
+		fmt.Printf("Error reading config file, %s", err)
+	}
+
+	if viper.GetString("environment") == "production" {
+		for s := range templates {
+			templatesProduction = append(templatesProduction, "/var/www/bitdeal.nl/"+templates[s])
+		}
+		tmpl = template.Must(template.New("stats.html").Funcs(funcMap).ParseFiles(templatesProduction...))
+	} else {
+		tmpl = template.Must(template.New("stats.html").Funcs(funcMap).ParseFiles(templates...))
+	}
+
+	data := models.StatsData{
+		Title: "Stats",
+		URL:   r.RequestURI,
+	}
+
+	tmpl.ExecuteTemplate(w, "layout", data)
+}
+
+/*
+GetInformationPage ...
+*/
+func GetInformationPage(w http.ResponseWriter, r *http.Request) {
+	var funcMap = template.FuncMap{}
+
+	var tmpl *template.Template
+	var templatesProduction []string
+
+	templates := addTemplate("templates/pages/information.html")
+	templates = addExtraTemplate(templates, "templates/components/globalHeader.html")
 
 	// Set the file name of the configurations file
 	viper.SetConfigName("config")

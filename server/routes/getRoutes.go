@@ -22,6 +22,12 @@ var GetRoutes = models.Routes{
 		HandlerFunc: handlers.GetStatsPage,
 	},
 	models.Route{
+		Name:        "GetInformationPage",
+		Method:      "GET",
+		Pattern:     "/informatie",
+		HandlerFunc: handlers.GetInformationPage,
+	},
+	models.Route{
 		Name:        "GetStats",
 		Method:      "GET",
 		Pattern:     "/api/getstats",

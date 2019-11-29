@@ -15,10 +15,6 @@ var (
 	*/
 	baseTemplates = []string{
 		"templates/components/head.html",
-		"templates/components/homepageheaderright.html",
-		"templates/components/homepageheaderleft.html",
-		"templates/components/homepageheader.html",
-		"templates/components/homepagenav.html",
 		"templates/components/footer.html",
 		"templates/layouts/base.html",
 	}
