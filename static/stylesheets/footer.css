@@ -1,5 +1,24 @@
 footer {
 	padding: 3rem;
-	background: #222;
+	background: #303030;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
 }
 
+.footer-column {
+	display: flex;
+	flex-direction: column;
+}
+
+.footer-item {
+	color: #DDD;
+	font-size: 0.8rem;
+	line-height: 2.5;
+}
+
+.footer-item--header {
+	text-transform: uppercase;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
