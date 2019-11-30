@@ -56,13 +56,13 @@
 	font-size: 1rem;
 	font-weight: bold;
 	border-radius: 1.25rem;
-	background: #B0E2F5;
-	border: 1px solid rgba(0, 18, 77, 0.2);
-	color: #002448;
+	background: #6C63FF;
+	border: 1px solid rgba(19, 0, 77, 0.2);
+	color: #f2f1ff;
 	transition: all 200ms ease;
-	-webkit-box-shadow: 0px 3px 5px 0px rgba(0, 45, 88, 0.2);
-	-moz-box-shadow: 0px 3px 5px 0px rgba(0, 45, 88, 0.2);
-	box-shadow: 0px 3px 5px 0px rgba(0, 45, 88, 0.2);
+	-webkit-box-shadow: 0px 3px 5px 0px rgba(39, 0, 88, 0.2);
+	-moz-box-shadow: 0px 3px 5px 0px rgba(39, 0, 88, 0.2);
+	box-shadow: 0px 3px 5px 0px rgba(39, 0, 88, 0.2);
 	text-decoration: none;
 }
 
@@ -71,7 +71,7 @@
 }
 
 .info-button:hover {
-	background: #A0D2E5;
+	background: #827bff;
 }
 
 .image-wrapper {
