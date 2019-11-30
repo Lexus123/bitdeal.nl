@@ -262,7 +262,7 @@ nav {
 	display: flex;
 	justify-content: space-between;
 	font-size: 28px;
-	padding-bottom: 1px;
+	padding-bottom: 3px;
 	border-bottom: 1px solid #DDD;
 }
 
