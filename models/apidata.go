@@ -367,7 +367,7 @@ type Coinmerce struct {
 /*
 Bitqist ...
 */
-type Bitqist []struct {
+type Bitqist struct {
 	BaseCurrency  int         `json:"base_currency"`
 	QuoteCurrency int         `json:"quote_currency"`
 	Time          interface{} `json:"time"`

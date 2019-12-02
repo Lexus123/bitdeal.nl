@@ -299,7 +299,7 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Status:   models.OK,
 			Broker:   true,
 		}
-	case *models.Bitqist:
+	case *[]models.Bitqist:
 		// {
 		//   "base_currency": 216,
 		//   "quote_currency": 215,
@@ -314,28 +314,33 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 		//   "ask_7d": 7353.02995005
 		// }
 
-		// if request.Type == "buy" {
-		// 	rate, _ = strconv.ParseFloat(exchangeData., 32)
-		// } else {
-		// 	rate, _ = strconv.ParseFloat(exchangeData.ExchangeRates.Buy.Btc, 32)
-		// }
+		for _, currency := range *exchangeData {
+			if currency.QuoteCurrency == 215 {
+				if request.Type == "buy" {
+					rate = currency.AskNowInclFee
+				} else {
+					rate = currency.BidNowInclFee
+				}
 
-		// reqAmount, _ := strconv.ParseFloat(request.Amount, 64)
-		// if request.Currency == "btc" {
-		// 	amount = math.Round(reqAmount*rate*100) / 100
-		// } else {
-		// 	amount = math.Round(reqAmount/rate*100000000) / 100000000
-		// }
+				reqAmount, _ := strconv.ParseFloat(request.Amount, 64)
 
-		return models.ExchangeRate{
-			Exchange: Bitqist.Name,
-			Rate:     math.Round(rate*100) / 100,
-			Amount:   amount,
-			Link:     Bitqist.Link,
-			Reviews:  Bitqist.Reviews,
-			Stars:    Bitqist.Stars,
-			Status:   models.OK,
-			Broker:   Bitqist.Broker,
+				if request.Currency == "btc" {
+					amount = math.Round(reqAmount*rate*100) / 100
+				} else {
+					amount = math.Round(reqAmount/rate*100000000) / 100000000
+				}
+
+				return models.ExchangeRate{
+					Exchange: Bitqist.Name,
+					Rate:     math.Round(rate*100) / 100,
+					Amount:   amount,
+					Link:     Bitqist.Link,
+					Reviews:  Bitqist.Reviews,
+					Stars:    Bitqist.Stars,
+					Status:   models.OK,
+					Broker:   Bitqist.Broker,
+				}
+			}
 		}
 	case *models.GetPricesError:
 		return returnError(exchangeData)
