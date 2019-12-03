@@ -12,13 +12,26 @@ footer {
 }
 
 .footer-item {
-	color: #DDD;
-	font-size: 0.8rem;
-	line-height: 2.5;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
 
 .footer-item--header {
 	text-transform: uppercase;
 	font-weight: bold;
 	margin-bottom: 10px;
+	color: #DDD;
+}
+
+.footer-item__logo {
+	width: 0.8rem;
+	filter: invert(0.8);
+}
+
+.footer-item__text {
+	color: #DDD;
+	font-size: 0.8rem;
+	line-height: 2.5;
+	text-decoration: none;
 }

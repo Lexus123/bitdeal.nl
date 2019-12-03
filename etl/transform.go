@@ -300,20 +300,6 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Broker:   true,
 		}
 	case *[]models.Bitqist:
-		// {
-		//   "base_currency": 216,
-		//   "quote_currency": 215,
-		//   "time": "2019-10-25T10:34:40.387829Z",
-		//   "volume_base_now": null,
-		//   "ask_now": 6462.59995581,
-		//   "ask_now_incl_fee": 6478.756455699525,
-		//   "bid_now": 6435.27857649,
-		//   "bid_now_incl_fee": 6419.190380048775,
-		//   "ask_1h": 6468.73159865,
-		//   "ask_1d": 6606.24783519,
-		//   "ask_7d": 7353.02995005
-		// }
-
 		for _, currency := range *exchangeData {
 			if currency.QuoteCurrency == 215 {
 				if request.Type == "buy" {
@@ -416,6 +402,17 @@ func returnError(exchangeData *models.GetPricesError) models.ExchangeRate {
 			Stars:    Knaken.Stars,
 			Status:   exchangeData.Error,
 			Broker:   Knaken.Broker,
+		}
+	case "Bitqist":
+		return models.ExchangeRate{
+			Exchange: Bitqist.Name,
+			Rate:     1,
+			Amount:   1,
+			Link:     Bitqist.Link,
+			Reviews:  Bitqist.Reviews,
+			Stars:    Bitqist.Stars,
+			Status:   exchangeData.Error,
+			Broker:   Bitqist.Broker,
 		}
 	}
 

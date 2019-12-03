@@ -14,8 +14,8 @@ var (
 		baseTemplates ...
 	*/
 	baseTemplates = []string{
-		"templates/components/head.html",
-		"templates/components/footer.html",
+		"templates/defaultComponents/head.html",
+		"templates/defaultComponents/footer.html",
 		"templates/layouts/base.html",
 	}
 
