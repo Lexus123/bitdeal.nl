@@ -86,32 +86,6 @@ type Bitvavo struct {
 }
 
 /*
-Satos ... POST https://api.satos.nl/v1/public/getDepthRate
-*/
-type Satos struct {
-	Data []struct {
-		Btc struct {
-			Rateid      int     `json:"rateid"`
-			AskPrice    int     `json:"ask_price"`
-			AskVolume   float64 `json:"ask_volume"`
-			AskCoin     float64 `json:"ask_coin"`
-			AskEurBank  float64 `json:"ask_eur_bank"`
-			AskEurCash  float64 `json:"ask_eur_cash"`
-			AskRateBank float64 `json:"ask_rate_bank"`
-			AskRateCash float64 `json:"ask_rate_cash"`
-			BidPrice    int     `json:"bid_price"`
-			BidVolume   float64 `json:"bid_volume"`
-			BidCoin     float64 `json:"bid_coin"`
-			BidEurBank  float64 `json:"bid_eur_bank"`
-			BidEurCash  float64 `json:"bid_eur_cash"`
-			BidRateBank float64 `json:"bid_rate_bank"`
-			BidRateCash float64 `json:"bid_rate_cash"`
-			UpdatedAt   int     `json:"updated_at"`
-		} `json:"btc"`
-	} `json:"data"`
-}
-
-/*
 Bitmymoney ... GET https://www.bitmymoney.com/market/
 */
 type Bitmymoney struct {
@@ -379,4 +353,16 @@ type Bitqist struct {
 	Ask1H         interface{} `json:"ask_1h"`
 	Ask1D         interface{} `json:"ask_1d"`
 	Ask7D         interface{} `json:"ask_7d"`
+}
+
+/*
+Satos ...
+*/
+type Satos struct {
+	Pair      string `json:"pair"`
+	Side      string `json:"side"`
+	Value     string `json:"value"`
+	Quantity  string `json:"quantity"`
+	Price     string `json:"price"`
+	Timestamp int    `json:"timestamp"`
 }

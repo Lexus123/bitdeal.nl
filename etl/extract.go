@@ -141,6 +141,38 @@ var Exchanges = []models.Exchange{
 		Currency: "both",
 		Endpoint: "v1/eur/prices/",
 	},
+	{
+		Name:     "Satos",
+		URL:      "https://api.satos.eu/",
+		Method:   "GET",
+		Type:     "buy",
+		Currency: "eur",
+		Endpoint: "ticker/eur/btc/buy/fiat/",
+	},
+	{
+		Name:     "Satos",
+		URL:      "https://api.satos.eu/",
+		Method:   "GET",
+		Type:     "buy",
+		Currency: "btc",
+		Endpoint: "ticker/eur/btc/buy/coin/",
+	},
+	{
+		Name:     "Satos",
+		URL:      "https://api.satos.eu/",
+		Method:   "GET",
+		Type:     "sell",
+		Currency: "eur",
+		Endpoint: "ticker/eur/btc/sell/fiat/",
+	},
+	{
+		Name:     "Satos",
+		URL:      "https://api.satos.eu/",
+		Method:   "GET",
+		Type:     "sell",
+		Currency: "btc",
+		Endpoint: "ticker/eur/btc/sell/coin/",
+	},
 }
 
 func structSelector(body []byte, s interface{}) (interface{}, error) {
@@ -172,6 +204,8 @@ func toJSON(body []byte, exchange models.Exchange) (interface{}, error) {
 		return structSelector(body, new(models.Coinmerce))
 	case "Bitqist":
 		return structSelector(body, new([]models.Bitqist))
+	case "Satos":
+		return structSelector(body, new(models.Satos))
 	}
 
 	return nil, nil
@@ -215,6 +249,9 @@ func fetchPrices(request models.GetPricesData, exchange models.Exchange, dataCha
 		break
 	case "Bitqist":
 		resp, err = http.Get(exchange.URL + exchange.Endpoint)
+		break
+	case "Satos":
+		resp, err = http.Get(exchange.URL + exchange.Endpoint + request.Amount)
 		break
 	}
 

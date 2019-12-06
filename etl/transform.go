@@ -70,6 +70,15 @@ var (
 		Stars:   5,
 		Broker:  true,
 	}
+
+	// Satos ...
+	Satos = models.ExchangeInfo{
+		Name:    "Satos",
+		Link:    "https://www.satos.nl?tap_a=24289-4e445f&tap_s=632216-43ead6",
+		Reviews: 1401,
+		Stars:   5,
+		Broker:  true,
+	}
 )
 
 /*
@@ -271,34 +280,34 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 			Status:   models.OK,
 			Broker:   Knaken.Broker,
 		}
-	case *models.Coinmerce:
-		var respRate float64
-		reqAmount, _ := strconv.ParseFloat(request.Amount, 64)
+	// case *models.Coinmerce:
+	// 	var respRate float64
+	// 	reqAmount, _ := strconv.ParseFloat(request.Amount, 64)
 
-		if request.Type == "buy" {
-			respRate, _ = strconv.ParseFloat(exchangeData.Prices.BTC.Buy, 64)
-			rate = respRate
-		} else {
-			respRate, _ = strconv.ParseFloat(exchangeData.Prices.BTC.Sell, 64)
-			rate = respRate
-		}
+	// 	if request.Type == "buy" {
+	// 		respRate, _ = strconv.ParseFloat(exchangeData.Prices.BTC.Buy, 64)
+	// 		rate = respRate
+	// 	} else {
+	// 		respRate, _ = strconv.ParseFloat(exchangeData.Prices.BTC.Sell, 64)
+	// 		rate = respRate
+	// 	}
 
-		if request.Currency == "btc" {
-			amount = math.Round(respRate*reqAmount*100) / 100
-		} else {
-			amount = math.Round(reqAmount/respRate*100000000) / 100000000
-		}
+	// 	if request.Currency == "btc" {
+	// 		amount = math.Round(respRate*reqAmount*100) / 100
+	// 	} else {
+	// 		amount = math.Round(reqAmount/respRate*100000000) / 100000000
+	// 	}
 
-		return models.ExchangeRate{
-			Exchange: "Coinmerce",
-			Rate:     math.Round(rate*100) / 100,
-			Amount:   amount,
-			Link:     "https://coinmerce.io/r/9WZT8VCHMo",
-			Reviews:  107,
-			Stars:    5,
-			Status:   models.OK,
-			Broker:   true,
-		}
+	// 	return models.ExchangeRate{
+	// 		Exchange: "Coinmerce",
+	// 		Rate:     math.Round(rate*100) / 100,
+	// 		Amount:   amount,
+	// 		Link:     "https://coinmerce.io/r/9WZT8VCHMo",
+	// 		Reviews:  107,
+	// 		Stars:    5,
+	// 		Status:   models.OK,
+	// 		Broker:   true,
+	// 	}
 	case *[]models.Bitqist:
 		for _, currency := range *exchangeData {
 			if currency.QuoteCurrency == 215 {
@@ -327,6 +336,25 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 					Broker:   Bitqist.Broker,
 				}
 			}
+		}
+	case *models.Satos:
+		rate, _ = strconv.ParseFloat(exchangeData.Price, 64)
+
+		if request.Currency == "btc" {
+			amount, _ = strconv.ParseFloat(exchangeData.Value, 64)
+		} else {
+			amount, _ = strconv.ParseFloat(exchangeData.Quantity, 64)
+		}
+
+		return models.ExchangeRate{
+			Exchange: Satos.Name,
+			Rate:     rate,
+			Amount:   amount,
+			Link:     Satos.Link,
+			Reviews:  Satos.Reviews,
+			Stars:    Satos.Stars,
+			Status:   models.OK,
+			Broker:   Satos.Broker,
 		}
 	case *models.GetPricesError:
 		return returnError(exchangeData)
