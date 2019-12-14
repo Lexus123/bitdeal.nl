@@ -9,13 +9,21 @@
 
 	<title>Bitdeal - Beste prijs voor je bitcoins!</title>
 
-	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="/static/stylesheets/bitdeal.css">
-	<link rel="stylesheet" type="text/css" href="/static/stylesheets/footer.css">
-	<link rel="stylesheet" type="text/css" href="/static/stylesheets/homepage.css">
-	<link rel="stylesheet" type="text/css" href="/static/stylesheets/responsiveness.css">
-
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:700&display=swap" rel="stylesheet" />
 	<link rel="shortcut icon" type="image/png" href="/static/favicons/favicon.ico" />
+
+	<link rel="stylesheet" type="text/css" href="/static/stylesheets/defaultstyling.css" />
+	<link rel="stylesheet" type="text/css" href="/static/stylesheets/footer.css" />
+
+	{{if eq .URL "/"}}
+	<link rel="stylesheet" type="text/css" href="/static/stylesheets/bitdeal.css" />
+	<link rel="stylesheet" type="text/css" href="/static/stylesheets/homepage.css" />
+	<link rel="stylesheet" type="text/css" href="/static/stylesheets/responsiveness.css" />
+	{{end}}
+
+	{{if eq .URL "/informatie"}}
+	<link rel="stylesheet" type="text/css" href="/static/stylesheets/informatie.css" />
+	{{end}}
 
 	{{if eq .URL "/"}}
 	<script type="text/javascript" src="/static/js/bitdeal.js"></script>
@@ -30,6 +38,7 @@
 		})(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
 	</script>
 	{{end}}
+
 	{{if eq .URL "/stats"}}
 	<script type="text/javascript" src="/static/js/highcharts.js"></script>
 	<script type="text/javascript" src="/static/js/stats.js"></script>
