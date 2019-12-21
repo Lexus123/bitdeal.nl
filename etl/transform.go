@@ -345,7 +345,7 @@ func returnError(exchangeData *models.GetPricesError) models.ExchangeRate {
 			Link:     Bitvavo.Link,
 			Reviews:  Bitvavo.Reviews,
 			Stars:    Bitvavo.Stars,
-			Status:   exchangeData.Error,
+			Status:   models.GeneralError,
 			Broker:   Bitvavo.Broker,
 		}
 	case "Litebit":
@@ -356,7 +356,7 @@ func returnError(exchangeData *models.GetPricesError) models.ExchangeRate {
 			Link:     Litebit.Link,
 			Reviews:  Litebit.Reviews,
 			Stars:    Litebit.Stars,
-			Status:   exchangeData.Error,
+			Status:   models.GeneralError,
 			Broker:   Litebit.Broker,
 		}
 	case "Bitonic":
@@ -367,7 +367,7 @@ func returnError(exchangeData *models.GetPricesError) models.ExchangeRate {
 			Link:     Bitonic.Link,
 			Reviews:  Bitonic.Reviews,
 			Stars:    Bitonic.Stars,
-			Status:   exchangeData.Error,
+			Status:   models.GeneralError,
 			Broker:   Bitonic.Broker,
 		}
 	case "Btcdirect":
@@ -378,7 +378,7 @@ func returnError(exchangeData *models.GetPricesError) models.ExchangeRate {
 			Link:     Btcdirect.Link,
 			Reviews:  Btcdirect.Reviews,
 			Stars:    Btcdirect.Stars,
-			Status:   exchangeData.Error,
+			Status:   models.GeneralError,
 			Broker:   Btcdirect.Broker,
 		}
 	case "Bitrush":
@@ -389,7 +389,7 @@ func returnError(exchangeData *models.GetPricesError) models.ExchangeRate {
 			Link:     Btcdirect.Link,
 			Reviews:  Btcdirect.Reviews,
 			Stars:    Btcdirect.Stars,
-			Status:   exchangeData.Error,
+			Status:   models.GeneralError,
 			Broker:   Btcdirect.Broker,
 		}
 	case "Knaken":
@@ -400,7 +400,7 @@ func returnError(exchangeData *models.GetPricesError) models.ExchangeRate {
 			Link:     Knaken.Link,
 			Reviews:  Knaken.Reviews,
 			Stars:    Knaken.Stars,
-			Status:   exchangeData.Error,
+			Status:   models.GeneralError,
 			Broker:   Knaken.Broker,
 		}
 	case "Bitqist":
@@ -411,7 +411,7 @@ func returnError(exchangeData *models.GetPricesError) models.ExchangeRate {
 			Link:     Bitqist.Link,
 			Reviews:  Bitqist.Reviews,
 			Stars:    Bitqist.Stars,
-			Status:   exchangeData.Error,
+			Status:   models.GeneralError,
 			Broker:   Bitqist.Broker,
 		}
 	}
