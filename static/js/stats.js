@@ -103,6 +103,9 @@ function createChart(data) {
 					headerFormat: `<b>{point.key}</b><br>`,
 					pointFormat: '{point.x} sigma afwijkingen van het gemiddelde<br>{point.y} % van de requests is sneller'
 				}
+			},
+			series: {
+				turboThreshold: 10000,
 			}
 		},
 		series: [{
