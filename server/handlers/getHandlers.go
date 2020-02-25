@@ -21,7 +21,7 @@ GetHomePage ...
 func GetHomePage(w http.ResponseWriter, r *http.Request) {
 	var isIphone = strings.Contains(r.Header.Get("User-Agent"), "iPhone")
 
-	// log.Printf(r.Header.Get("User-Agent"))
+	// log.Printf(r.Header.Get("User-Agent") )
 
 	requestBody, err := json.Marshal(models.GetPricesData{
 		Type:     "buy",
