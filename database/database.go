@@ -142,7 +142,7 @@ func GetSunshade() []byte {
 		}
 	}
 
-	output, err := json.Marshal(responseSunshade)
+	output, err := json.Marshal(responseSunshade.Length)
 	if err != nil {
 		panic(err.Error())
 	}
