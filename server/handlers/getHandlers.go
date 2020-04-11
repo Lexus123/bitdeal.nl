@@ -196,6 +196,15 @@ func GetStats(w http.ResponseWriter, r *http.Request) {
 }
 
 /*
+GetSunshade ...
+*/
+func GetSunshade(w http.ResponseWriter, r *http.Request) {
+	output := database.GetSunshade()
+	w.Header().Set("content-type", "application/json")
+	w.Write(output)
+}
+
+/*
 GetBitcoinPrices ...
 */
 func GetBitcoinPrices(w http.ResponseWriter, r *http.Request) {

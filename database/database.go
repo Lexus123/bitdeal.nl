@@ -48,8 +48,24 @@ func SaveResponseTime(responseTime, created int64) {
 	}
 
 	insert.Exec(responseTime, created)
-
 	defer insert.Close()
+}
+
+/*
+PatchSunshade ...
+*/
+func PatchSunshade(length int64) {
+	db := openDatabaseConnection()
+	defer db.Close()
+
+	patch, err := db.Prepare("UPDATE sunshade SET length = ? WHERE id = 1")
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+	patch.Exec(length)
+	defer patch.Close()
 }
 
 /*
@@ -98,6 +114,35 @@ func GetStatistics() []byte {
 	}
 
 	output, err := json.Marshal(responsetimes)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	return output
+}
+
+/*
+GetSunshade ...
+*/
+func GetSunshade() []byte {
+	db := openDatabaseConnection()
+	defer db.Close()
+
+	var responseSunshade models.ResponseSunshade
+
+	result, err := db.Query("SELECT * FROM sunshade")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	for result.Next() {
+		err = result.Scan(&responseSunshade.ID, &responseSunshade.Length)
+		if err != nil {
+			panic(err.Error())
+		}
+	}
+
+	output, err := json.Marshal(responseSunshade)
 	if err != nil {
 		panic(err.Error())
 	}

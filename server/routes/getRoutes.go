@@ -33,4 +33,10 @@ var GetRoutes = models.Routes{
 		Pattern:     "/api/getstats",
 		HandlerFunc: handlers.GetStats,
 	},
+	models.Route{
+		Name:        "GetSunshade",
+		Method:      "GET",
+		Pattern:     "/api/sunshade",
+		HandlerFunc: handlers.GetSunshade,
+	},
 }

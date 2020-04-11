@@ -22,3 +22,11 @@ type Responsetimes struct {
 	Count         int64          `json:"count"`
 	Responsetimes []Responsetime `json:"responsetimes"`
 }
+
+/*
+ResponseSunshade ...
+*/
+type ResponseSunshade struct {
+	ID     int64 `json:"id"`
+	Length int64 `json:"length"`
+}
