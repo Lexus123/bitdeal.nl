@@ -27,7 +27,7 @@
 				</label>
 				<div class="amount__section">
 					<div class="amount__input amount__input--btc">
-						<label for="btc">{{if (eq .Iphone true)}}B{{end}}{{if (eq .Iphone false)}}₿{{end}}</label>
+						<label for="btc">{{if (eq .Iphone true)}}B{{end}}{{if (eq .Iphone false)}}B{{end}}</label>
 						<input id="btc" name="btc" value={{.ExchangePrices.BestAmount}} type="number"
 							step="0.00000001" />
 					</div>

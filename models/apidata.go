@@ -230,14 +230,6 @@ type Btcdirect struct {
 	SellMaxEurXrp             int     `json:"sellMaxEurXrp"`
 	BuyMinBtc                 float64 `json:"buyMinBtc"`
 	BuyMaxBtc                 int     `json:"buyMaxBtc"`
-	BuyMinLtc                 float64 `json:"buyMinLtc"`
-	BuyMaxLtc                 int     `json:"buyMaxLtc"`
-	BuyMinEth                 float64 `json:"buyMinEth"`
-	BuyMaxEth                 int     `json:"buyMaxEth"`
-	BuyMinBch                 float64 `json:"buyMinBch"`
-	BuyMaxBch                 int     `json:"buyMaxBch"`
-	BuyMinXrp                 int     `json:"buyMinXrp"`
-	BuyMaxXrp                 int     `json:"buyMaxXrp"`
 	SellEnabled               int     `json:"sellEnabled"`
 	SellEnabledGeneral        int     `json:"sellEnabledGeneral"`
 	BuyEnabled                int     `json:"buyEnabled"`

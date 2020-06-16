@@ -31,7 +31,7 @@ func GetPrices(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Send message to the extractor to get data from brokers
-	dataChannel := make(chan interface{}, 8)
+	dataChannel := make(chan interface{}, 7)
 	defer close(dataChannel)
 	go etl.DoRequests(message, dataChannel)
 
@@ -42,7 +42,7 @@ func GetPrices(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// For each exchange, transform the data and put it in the response
-	for i := 0; i < 8; i++ {
+	for i := 0; i < 7; i++ {
 		getPricesResponse.ExchangeRates = append(getPricesResponse.ExchangeRates, etl.Transform(message, <-dataChannel))
 	}
 

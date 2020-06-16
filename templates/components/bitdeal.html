@@ -23,7 +23,8 @@
 	</div>
 
 	<div class="deal__desc desc__rate">
-		<p class="rate-amount">{{if (eq .Iphone true)}}B{{end}}{{if (eq .Iphone false)}}₿{{end}} {{ .Exchange.Amount }}
+		<p class="rate-amount">{{if (eq .Iphone true)}}B{{end}}{{if (eq .Iphone false)}}B{{end}}
+			{{ .Exchange.Amount }}
 		</p>
 		<p class="rate rate--desktop">(€ {{ .Exchange.Rate }} / BTC)</p>
 	</div>

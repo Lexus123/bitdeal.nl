@@ -229,7 +229,7 @@ function applyNewPrices(priceData) {
 		// Amount update
 		var bitdealAmount = bitdealChildren[3].children[0];
 		if (priceData.currency === "eur") {
-			bitdealAmount.innerHTML = iOS ? "B " + priceData.exchangerates[exchangeIndex].amount : "₿ " + priceData.exchangerates[exchangeIndex].amount;
+			bitdealAmount.innerHTML = iOS ? "B " + priceData.exchangerates[exchangeIndex].amount : "B " + priceData.exchangerates[exchangeIndex].amount;
 		} else {
 			bitdealAmount.innerHTML = "€ " + priceData.exchangerates[exchangeIndex].amount;
 		}
