@@ -21,7 +21,7 @@ func Host() {
 	// Set the path to look for the configurations file
 	viper.AddConfigPath(".")
 
-	// Enable VIPER to read Environment Variables
+	// Enable  VIPER to read Environment Variables
 	viper.AutomaticEnv()
 
 	viper.SetConfigType("yml")
