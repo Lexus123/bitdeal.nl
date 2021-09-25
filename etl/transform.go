@@ -12,7 +12,7 @@ var (
 	Bitvavo = models.ExchangeInfo{
 		Name:    "Bitvavo",
 		Link:    "https://bitvavo.com/?a=C23D4F6D97",
-		Reviews: 1895,
+		Reviews: 10260,
 		Stars:   5,
 		Broker:  false,
 	}
@@ -21,8 +21,8 @@ var (
 	Litebit = models.ExchangeInfo{
 		Name:    "Litebit",
 		Link:    "https://www.litebit.eu/?referrer=40203",
-		Reviews: 1695,
-		Stars:   5,
+		Reviews: 2801,
+		Stars:   3,
 		Broker:  true,
 	}
 
@@ -30,7 +30,7 @@ var (
 	Bitonic = models.ExchangeInfo{
 		Name:    "Bitonic",
 		Link:    "https://bitonic.nl/?partner=777",
-		Reviews: 41,
+		Reviews: 124,
 		Stars:   4,
 		Broker:  true,
 	}
@@ -39,7 +39,7 @@ var (
 	Btcdirect = models.ExchangeInfo{
 		Name:    "Btcdirect",
 		Link:    "https://btcdirect.eu/nl-nl?partnerId=319",
-		Reviews: 5485,
+		Reviews: 9300,
 		Stars:   5,
 		Broker:  true,
 	}
@@ -75,8 +75,8 @@ var (
 	Satos = models.ExchangeInfo{
 		Name:    "Satos",
 		Link:    "https://www.satos.nl?tap_a=24289-4e445f&tap_s=632216-43ead6",
-		Reviews: 1401,
-		Stars:   5,
+		Reviews: 1712,
+		Stars:   4,
 		Broker:  true,
 	}
 )
