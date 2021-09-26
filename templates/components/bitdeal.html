@@ -1,15 +1,9 @@
 {{ define "bitdeal" }}
 <div
-	{{if
-	(eq
-	.Exchange.Broker
-	false)}}
+	{{if (eq .Exchange.Broker false)}}
 	class="bitdeal exchange"
 	{{end}}
-	{{if
-	(eq
-	.Exchange.Broker
-	true)}}
+	{{if (eq .Exchange.Broker true)}}
 	class="bitdeal"
 	{{end}}
 	id="{{.Exchange.Exchange}}"
