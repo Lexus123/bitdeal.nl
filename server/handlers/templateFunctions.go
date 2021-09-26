@@ -20,6 +20,9 @@ func bestRateToBTC(bestRate float64) float64 {
 }
 
 func stars(stars int) string {
+	if stars == 3 {
+		return "★★★"
+	}
 	if stars == 4 {
 		return "★★★★"
 	}

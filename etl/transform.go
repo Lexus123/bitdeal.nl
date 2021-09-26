@@ -109,14 +109,15 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 		}
 
 		return models.ExchangeRate{
-			Exchange: Bitvavo.Name,
-			Rate:     math.Round(rate*100) / 100,
-			Amount:   amount,
-			Link:     Bitvavo.Link,
-			Reviews:  Bitvavo.Reviews,
-			Stars:    Bitvavo.Stars,
-			Status:   models.OK,
-			Broker:   Bitvavo.Broker,
+			Exchange:  Bitvavo.Name,
+			Rate:      math.Round(rate*100) / 100,
+			Amount:    amount,
+			Link:      Bitvavo.Link,
+			TrustLink: Bitvavo.TrustLink,
+			Reviews:   Bitvavo.Reviews,
+			Stars:     Bitvavo.Stars,
+			Status:    models.OK,
+			Broker:    Bitvavo.Broker,
 		}
 	case *models.Litebit:
 		if request.Type == "buy" {
@@ -133,14 +134,15 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 		}
 
 		return models.ExchangeRate{
-			Exchange: Litebit.Name,
-			Rate:     math.Round(rate*100) / 100,
-			Amount:   amount,
-			Link:     Litebit.Link,
-			Reviews:  Litebit.Reviews,
-			Stars:    Litebit.Stars,
-			Status:   models.OK,
-			Broker:   Litebit.Broker,
+			Exchange:  Litebit.Name,
+			Rate:      math.Round(rate*100) / 100,
+			Amount:    amount,
+			Link:      Litebit.Link,
+			TrustLink: Litebit.TrustLink,
+			Reviews:   Litebit.Reviews,
+			Stars:     Litebit.Stars,
+			Status:    models.OK,
+			Broker:    Litebit.Broker,
 		}
 	case *models.BitonicBuy:
 		if request.Currency == "btc" {
@@ -150,14 +152,15 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 		}
 
 		return models.ExchangeRate{
-			Exchange: Bitonic.Name,
-			Rate:     math.Round(exchangeData.Price*100) / 100,
-			Amount:   amount,
-			Link:     Bitonic.Link,
-			Reviews:  Bitonic.Reviews,
-			Stars:    Bitonic.Stars,
-			Status:   models.OK,
-			Broker:   Bitonic.Broker,
+			Exchange:  Bitonic.Name,
+			Rate:      math.Round(exchangeData.Price*100) / 100,
+			Amount:    amount,
+			Link:      Bitonic.Link,
+			TrustLink: Bitonic.TrustLink,
+			Reviews:   Bitonic.Reviews,
+			Stars:     Bitonic.Stars,
+			Status:    models.OK,
+			Broker:    Bitonic.Broker,
 		}
 	case *models.BitonicSell:
 		if request.Currency == "btc" {
@@ -167,14 +170,15 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 		}
 
 		return models.ExchangeRate{
-			Exchange: Bitonic.Name,
-			Rate:     math.Round(exchangeData.Price*100) / 100,
-			Amount:   amount,
-			Link:     Bitonic.Link,
-			Reviews:  Bitonic.Reviews,
-			Stars:    Bitonic.Stars,
-			Status:   models.OK,
-			Broker:   Bitonic.Broker,
+			Exchange:  Bitonic.Name,
+			Rate:      math.Round(exchangeData.Price*100) / 100,
+			Amount:    amount,
+			Link:      Bitonic.Link,
+			TrustLink: Bitonic.TrustLink,
+			Reviews:   Bitonic.Reviews,
+			Stars:     Bitonic.Stars,
+			Status:    models.OK,
+			Broker:    Bitonic.Broker,
 		}
 	case *models.Btcdirect:
 		if request.Type == "buy" {
@@ -191,14 +195,15 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 		}
 
 		return models.ExchangeRate{
-			Exchange: Btcdirect.Name,
-			Rate:     math.Round(rate*100) / 100,
-			Amount:   amount,
-			Link:     Btcdirect.Link,
-			Reviews:  Btcdirect.Reviews,
-			Stars:    Btcdirect.Stars,
-			Status:   models.OK,
-			Broker:   Btcdirect.Broker,
+			Exchange:  Btcdirect.Name,
+			Rate:      math.Round(rate*100) / 100,
+			Amount:    amount,
+			Link:      Btcdirect.Link,
+			TrustLink: Btcdirect.TrustLink,
+			Reviews:   Btcdirect.Reviews,
+			Stars:     Btcdirect.Stars,
+			Status:    models.OK,
+			Broker:    Btcdirect.Broker,
 		}
 	case *models.BitrushBuy:
 		reqAmount, _ := strconv.ParseFloat(request.Amount, 64)
@@ -324,14 +329,15 @@ func Transform(request models.GetPricesData, t interface{}) models.ExchangeRate 
 		}
 
 		return models.ExchangeRate{
-			Exchange: Satos.Name,
-			Rate:     rate,
-			Amount:   amount,
-			Link:     Satos.Link,
-			Reviews:  Satos.Reviews,
-			Stars:    Satos.Stars,
-			Status:   models.OK,
-			Broker:   Satos.Broker,
+			Exchange:  Satos.Name,
+			Rate:      rate,
+			Amount:    amount,
+			Link:      Satos.Link,
+			TrustLink: Satos.TrustLink,
+			Reviews:   Satos.Reviews,
+			Stars:     Satos.Stars,
+			Status:    models.OK,
+			Broker:    Satos.Broker,
 		}
 	case *models.GetPricesError:
 		return returnError(exchangeData)
@@ -344,47 +350,51 @@ func returnError(exchangeData *models.GetPricesError) models.ExchangeRate {
 	switch exchangeData.Exchange {
 	case "Bitvavo":
 		return models.ExchangeRate{
-			Exchange: Bitvavo.Name,
-			Rate:     1,
-			Amount:   1,
-			Link:     Bitvavo.Link,
-			Reviews:  Bitvavo.Reviews,
-			Stars:    Bitvavo.Stars,
-			Status:   models.GeneralError,
-			Broker:   Bitvavo.Broker,
+			Exchange:  Bitvavo.Name,
+			Rate:      1,
+			Amount:    1,
+			Link:      Bitvavo.Link,
+			TrustLink: Bitvavo.TrustLink,
+			Reviews:   Bitvavo.Reviews,
+			Stars:     Bitvavo.Stars,
+			Status:    models.GeneralError,
+			Broker:    Bitvavo.Broker,
 		}
 	case "Litebit":
 		return models.ExchangeRate{
-			Exchange: Litebit.Name,
-			Rate:     1,
-			Amount:   1,
-			Link:     Litebit.Link,
-			Reviews:  Litebit.Reviews,
-			Stars:    Litebit.Stars,
-			Status:   models.GeneralError,
-			Broker:   Litebit.Broker,
+			Exchange:  Litebit.Name,
+			Rate:      1,
+			Amount:    1,
+			Link:      Litebit.Link,
+			TrustLink: Litebit.TrustLink,
+			Reviews:   Litebit.Reviews,
+			Stars:     Litebit.Stars,
+			Status:    models.GeneralError,
+			Broker:    Litebit.Broker,
 		}
 	case "Bitonic":
 		return models.ExchangeRate{
-			Exchange: Bitonic.Name,
-			Rate:     1,
-			Amount:   1,
-			Link:     Bitonic.Link,
-			Reviews:  Bitonic.Reviews,
-			Stars:    Bitonic.Stars,
-			Status:   models.GeneralError,
-			Broker:   Bitonic.Broker,
+			Exchange:  Bitonic.Name,
+			Rate:      1,
+			Amount:    1,
+			Link:      Bitonic.Link,
+			TrustLink: Bitonic.TrustLink,
+			Reviews:   Bitonic.Reviews,
+			Stars:     Bitonic.Stars,
+			Status:    models.GeneralError,
+			Broker:    Bitonic.Broker,
 		}
 	case "Btcdirect":
 		return models.ExchangeRate{
-			Exchange: Btcdirect.Name,
-			Rate:     1,
-			Amount:   1,
-			Link:     Btcdirect.Link,
-			Reviews:  Btcdirect.Reviews,
-			Stars:    Btcdirect.Stars,
-			Status:   models.GeneralError,
-			Broker:   Btcdirect.Broker,
+			Exchange:  Btcdirect.Name,
+			Rate:      1,
+			Amount:    1,
+			Link:      Btcdirect.Link,
+			TrustLink: Btcdirect.TrustLink,
+			Reviews:   Btcdirect.Reviews,
+			Stars:     Btcdirect.Stars,
+			Status:    models.GeneralError,
+			Broker:    Btcdirect.Broker,
 		}
 	case "Bitrush":
 		return models.ExchangeRate{

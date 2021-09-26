@@ -41,14 +41,15 @@ type GetPricesResponse struct {
 ExchangeRate ...
 */
 type ExchangeRate struct {
-	Exchange string  `json:"exchange"`
-	Rate     float64 `json:"rate"`
-	Amount   float64 `json:"amount"`
-	Link     string  `json:"link"`
-	Reviews  int     `json:"reviews"`
-	Stars    int     `json:"stars"`
-	Status   Status  `json:"status"`
-	Broker   bool    `json:"broker"`
+	Exchange  string  `json:"exchange"`
+	Rate      float64 `json:"rate"`
+	Amount    float64 `json:"amount"`
+	Link      string  `json:"link"`
+	TrustLink string  `json:"trustlink"`
+	Reviews   int     `json:"reviews"`
+	Stars     int     `json:"stars"`
+	Status    Status  `json:"status"`
+	Broker    bool    `json:"broker"`
 }
 
 /*
