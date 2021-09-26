@@ -1,6 +1,19 @@
 {{ define "bitdeal" }}
-<div {{if (eq .Exchange.Broker false)}} class="bitdeal exchange" {{end}} {{if (eq .Exchange.Broker true)}}
-	class="bitdeal" {{end}} id={{.Exchange.Exchange}}>
+<div
+	{{if
+	(eq
+	.Exchange.Broker
+	false)}}
+	class="bitdeal exchange"
+	{{end}}
+	{{if
+	(eq
+	.Exchange.Broker
+	true)}}
+	class="bitdeal"
+	{{end}}
+	id="{{.Exchange.Exchange}}"
+>
 	<div class="bitdeal-company">
 		<p class="deal__desc desc__company">{{ .Exchange.Exchange }}</p>
 		<p class="company-reviews">★★★★★</p>
@@ -11,7 +24,9 @@
 		{{ if (eq .Exchange.Rate .BestRate)}}
 		<div class="deal__desc desc__pill desc__pill--deal">Beste deal!</div>
 		{{ else if (eq .Exchange.Reviews .MostReviews)}}
-		<div class="deal__desc desc__pill desc__pill--review">Meeste reviews!</div>
+		<div class="deal__desc desc__pill desc__pill--review">
+			Meeste reviews!
+		</div>
 		{{ else }}
 		<div class="deal__desc desc__pill desc__pill"></div>
 		{{end}}
@@ -19,22 +34,53 @@
 
 	<div class="deal__desc desc__review">
 		<p class="review--stars">{{ stars .Exchange.Stars }}</p>
-		<p class="review--text">{{ .Exchange.Reviews }} reviews</p>
+		<!-- <p class="review--text">{{ .Exchange.Reviews }} reviews</p> -->
+		<a
+			class="review--text"
+			href="{{.Exchange.TrustLink}}"
+			target="_blank"
+			rel="noopener"
+			>{{ .Exchange.Reviews }} reviews</a
+		>
 	</div>
 
 	<div class="deal__desc desc__rate">
-		<p class="rate-amount">{{if (eq .Iphone true)}}B{{end}}{{if (eq .Iphone false)}}B{{end}}
-			{{ .Exchange.Amount }}
+		<p class="rate-amount">
+			{{if (eq .Iphone true)}}B{{end}}{{if (eq .Iphone false)}}B{{end}} {{
+			.Exchange.Amount }}
 		</p>
 		<p class="rate rate--desktop">(€ {{ .Exchange.Rate }} / BTC)</p>
 	</div>
 
-	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
-		focusable="false" width="1.5em" height="1.5em"
-		style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"
-		preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24" class="arrow">
-		<path d="M15 4l2 2l-6 6l6 6l-2 2l-8-8z" fill="#7E7E7E" fill-rule="evenodd" />
-		<rect x="0" y="0" width="24" height="24" fill="rgba(126, 126, 126, 0)" /></svg>
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		xmlns:xlink="http://www.w3.org/1999/xlink"
+		aria-hidden="true"
+		focusable="false"
+		width="1.5em"
+		height="1.5em"
+		style="
+			-ms-transform: rotate(360deg);
+			-webkit-transform: rotate(360deg);
+			transform: rotate(360deg);
+		"
+		preserveAspectRatio="xMidYMid meet"
+		viewBox="0 0 24 24"
+		class="arrow"
+	>
+		<path
+			d="M15 4l2 2l-6 6l6 6l-2 2l-8-8z"
+			fill="#7E7E7E"
+			fill-rule="evenodd"
+		/>
+		<rect
+			x="0"
+			y="0"
+			width="24"
+			height="24"
+			fill="rgba(126, 126, 126, 0)"
+		/>
+	</svg>
 
 	<div class="deal__desc desc__rate desc__rate--mobile content">
 		<label class="label">Koers</label>
@@ -45,14 +91,20 @@
 		{{ if (eq .Exchange.Rate .BestRate)}}
 		<div class="deal__desc desc__pill desc__pill--deal">Beste deal!</div>
 		{{ else if (eq .Exchange.Reviews .MostReviews)}}
-		<div class="deal__desc desc__pill desc__pill--review">Meeste reviews!</div>
+		<div class="deal__desc desc__pill desc__pill--review">
+			Meeste reviews!
+		</div>
 		{{ else }}
 		<div class="deal__desc desc__pill desc__pill"></div>
 		{{end}}
 	</div>
 
-	<a class="deal__desc deal__desc--buy btn--company content" href={{.Exchange.Link}} target="_blank" rel=noopener>Ga
-		naar
-		{{ .Exchange.Exchange }}</a>
+	<a
+		class="deal__desc deal__desc--buy btn--company content"
+		href="{{.Exchange.Link}}"
+		target="_blank"
+		rel="noopener"
+		>Ga naar {{ .Exchange.Exchange }}</a
+	>
 </div>
 {{ end }}

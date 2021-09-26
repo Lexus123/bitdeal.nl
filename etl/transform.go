@@ -10,38 +10,42 @@ import (
 var (
 	// Bitvavo ...
 	Bitvavo = models.ExchangeInfo{
-		Name:    "Bitvavo",
-		Link:    "https://bitvavo.com/?a=C23D4F6D97",
-		Reviews: 10260,
-		Stars:   5,
-		Broker:  false,
+		Name:      "Bitvavo",
+		Link:      "https://bitvavo.com/?a=C23D4F6D97",
+		TrustLink: "https://nl.trustpilot.com/review/bitvavo.com",
+		Reviews:   10260,
+		Stars:     5,
+		Broker:    false,
 	}
 
 	// Litebit ...
 	Litebit = models.ExchangeInfo{
-		Name:    "Litebit",
-		Link:    "https://www.litebit.eu/?referrer=40203",
-		Reviews: 2801,
-		Stars:   3,
-		Broker:  true,
+		Name:      "Litebit",
+		Link:      "https://www.litebit.eu/?referrer=40203",
+		TrustLink: "https://nl.trustpilot.com/review/litebit.eu",
+		Reviews:   2801,
+		Stars:     3,
+		Broker:    true,
 	}
 
 	// Bitonic ...
 	Bitonic = models.ExchangeInfo{
-		Name:    "Bitonic",
-		Link:    "https://bitonic.nl/?partner=777",
-		Reviews: 124,
-		Stars:   4,
-		Broker:  true,
+		Name:      "Bitonic",
+		Link:      "https://bitonic.nl/?partner=777",
+		TrustLink: "https://nl.trustpilot.com/review/bitonic.nl",
+		Reviews:   124,
+		Stars:     3,
+		Broker:    true,
 	}
 
 	// Btcdirect ...
 	Btcdirect = models.ExchangeInfo{
-		Name:    "Btcdirect",
-		Link:    "https://btcdirect.eu/nl-nl?partnerId=319",
-		Reviews: 9300,
-		Stars:   5,
-		Broker:  true,
+		Name:      "Btcdirect",
+		Link:      "https://btcdirect.eu/nl-nl?partnerId=319",
+		TrustLink: "https://nl.trustpilot.com/review/btcdirect.eu",
+		Reviews:   9300,
+		Stars:     5,
+		Broker:    true,
 	}
 
 	// Bitrush ...
@@ -73,11 +77,12 @@ var (
 
 	// Satos ...
 	Satos = models.ExchangeInfo{
-		Name:    "Satos",
-		Link:    "https://www.satos.nl?tap_a=24289-4e445f&tap_s=632216-43ead6",
-		Reviews: 1712,
-		Stars:   4,
-		Broker:  true,
+		Name:      "Satos",
+		Link:      "https://www.satos.nl?tap_a=24289-4e445f&tap_s=632216-43ead6",
+		TrustLink: "https://nl.trustpilot.com/review/satos.eu",
+		Reviews:   1712,
+		Stars:     4,
+		Broker:    true,
 	}
 )
 

@@ -11,9 +11,9 @@ type Exchange struct {
 ExchangeInfo ...
 */
 type ExchangeInfo struct {
-	Name, Link     string
-	Reviews, Stars int
-	Broker         bool
+	Name, Link, TrustLink string
+	Reviews, Stars        int
+	Broker                bool
 }
 
 /*
