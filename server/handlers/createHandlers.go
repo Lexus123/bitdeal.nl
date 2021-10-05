@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"sort"
@@ -47,9 +46,7 @@ func GetPrices(w http.ResponseWriter, r *http.Request) {
 		getPricesResponse.ExchangeRates = append(getPricesResponse.ExchangeRates, etl.Transform(message, <-dataChannel))
 	}
 
-	// VERBETEREN
 	// Sort the prices according to the request
-	fmt.Printf("\ndingen: %#v\n", getPricesResponse)
 	if (getPricesResponse.Type == "buy" && getPricesResponse.Currency == "eur") || (getPricesResponse.Type == "sell" && getPricesResponse.Currency == "btc") {
 		sort.Slice(getPricesResponse.ExchangeRates[:], func(i, j int) bool {
 			return getPricesResponse.ExchangeRates[i].Amount > getPricesResponse.ExchangeRates[j].Amount
