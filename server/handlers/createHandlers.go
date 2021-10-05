@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"sort"
@@ -46,20 +47,22 @@ func GetPrices(w http.ResponseWriter, r *http.Request) {
 		getPricesResponse.ExchangeRates = append(getPricesResponse.ExchangeRates, etl.Transform(message, <-dataChannel))
 	}
 
+	// VERBETEREN
 	// Sort the prices according to the request
-	if getPricesResponse.Type == "buy" {
+	fmt.Printf("\ndingen: %#v\n", getPricesResponse)
+	if (getPricesResponse.Type == "buy" && getPricesResponse.Currency == "eur") || (getPricesResponse.Type == "sell" && getPricesResponse.Currency == "btc") {
 		sort.Slice(getPricesResponse.ExchangeRates[:], func(i, j int) bool {
-			return getPricesResponse.ExchangeRates[i].Rate < getPricesResponse.ExchangeRates[j].Rate
+			return getPricesResponse.ExchangeRates[i].Amount > getPricesResponse.ExchangeRates[j].Amount
 		})
 	} else {
 		sort.Slice(getPricesResponse.ExchangeRates[:], func(i, j int) bool {
-			return getPricesResponse.ExchangeRates[i].Rate > getPricesResponse.ExchangeRates[j].Rate
+			return getPricesResponse.ExchangeRates[i].Amount < getPricesResponse.ExchangeRates[j].Amount
 		})
 	}
 
 	getPricesResponse.BestRate = getPricesResponse.ExchangeRates[0].Rate
 	getPricesResponse.BestAmount = getPricesResponse.ExchangeRates[0].Amount
-	getPricesResponse.MostReviews = 5485
+	getPricesResponse.MostReviews = 10260
 
 	output, err := json.Marshal(getPricesResponse)
 	if err != nil {

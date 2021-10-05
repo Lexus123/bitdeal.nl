@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function (event) {
+document.addEventListener("DOMContentLoaded", (event) => {
 	var eurInput = document.getElementById("eur");
 	var btcInput = document.getElementById("btc");
 	var buyButton = document.getElementById("buy-button");
@@ -193,7 +193,9 @@ function applyNewPrices(priceData) {
 		// MOBILE
 		// Stars update
 		var bitdealStars = bitdealChildren[0].children[1];
-		if (priceData.exchangerates[exchangeIndex].stars === 4) {
+		if (priceData.exchangerates[exchangeIndex].stars === 3) {
+			bitdealStars.innerHTML = "★★★";
+		} else if (priceData.exchangerates[exchangeIndex].stars === 4) {
 			bitdealStars.innerHTML = "★★★★";
 		} else {
 			bitdealStars.innerHTML = "★★★★★";
@@ -240,7 +242,9 @@ function applyNewPrices(priceData) {
 
 		// Stars update
 		var bitdealStars = bitdealChildren[2].children[0];
-		if (priceData.exchangerates[exchangeIndex].stars === 4) {
+		if (priceData.exchangerates[exchangeIndex].stars === 3) {
+			bitdealStars.innerHTML = "★★★";
+		} else if (priceData.exchangerates[exchangeIndex].stars === 4) {
 			bitdealStars.innerHTML = "★★★★";
 		} else {
 			bitdealStars.innerHTML = "★★★★★";
